@@ -1,0 +1,46 @@
+{# The Modal #}
+<div class="modal fade" id="redefinirSenha">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Atualizar dados</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form id="form-redefinir" method="post" action="{{ path('config_redefinir_senha') }}">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="pwd">Nova senha:</label>
+              <input type="password" class="form-control" id="pwd" name="pwd">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="form-group">
+              <label for="cpwd">Confirmar senha:</label>
+              <input type="password" class="form-control" id="cpwd" name="cpwd">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center" style="margin-top: 15px;">
+            <span style="color: red;" id="msg"></span>
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input id="senha-submit" type="submit" class="btn btn-blue" value="Redefinir Senha">
+        <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

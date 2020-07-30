@@ -1,0 +1,39 @@
+{# The Modal #}
+<div class="modal fade" id="showitem">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Comprar Item</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form name="formshop" action="{{ path('shop_buy') }}">
+          <div class="text-center" style="margin-bottom: 20px;"><img name="image" src=""></div>
+          <input name="aionId" type="hidden" value="">
+          <div class="form-group">
+          <label for="charselect">Selecione um Personagem:</label>
+          <select class="form-control" id="charselect" name="selchar">
+            {% for item in players %}
+              <option value="{{ item.id }}|{{ item.name }}">{{ item.name }}</option>
+            {% endfor %}
+          </select>
+          </div>
+          {# <div class="form-group" id="amount">
+            <label for="amount">Amount:</label>
+            <input type="number" class="form-control" id="amount" name="amount">
+          </div> #}
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-blue" value="Incluir">
+        <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

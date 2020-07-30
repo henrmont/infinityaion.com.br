@@ -1,0 +1,179 @@
+/* Side Menu */
+#sidenav {
+    height: 100vh;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #2A2A2A;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+#sidenav #perfil{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    background-color: white;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 10;
+    border: 10px solid #2A2A2A;
+}
+
+#sidenav #perfil img{
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#sidenav #desc {
+    position: relative;
+    margin-top: -50px;
+    padding-top: 50px;
+    width: 200px;
+    height: 130px;
+    background-color: rgb(180,180,180);
+    z-index: 2;
+ }
+
+ #sidenav #desc ul {
+    padding-top: 10px;
+    list-style: none;
+ }
+
+#sidenav #desc li {
+    font-size: 14px;
+    padding-top:0px;
+ }
+
+ #sidenav #desc li.elyos {
+    font-size: 14px;
+    padding-top:0px;
+    color: green;
+ }
+
+#sidenav #menu ul{
+    margin-left: -30px;
+    margin-top: 5px;
+    list-style: none;
+    font-family: 'Asul', sans-serif;
+}
+
+#sidenav #menu ul li {
+    padding: 0.4vh;
+}
+
+#sidenav #menu ul li a{
+    color: rgb(130,130,130);
+    font-size: 17px;
+    transition: linear .3s;
+}
+
+#sidenav #menu ul li a.shop{
+    color: rgb(200,150,10);
+    font-size: 17px;
+    transition: linear .3s;
+}
+
+#sidenav #menu ul li a.shop:hover{
+    color: rgb(200,200,50);
+    text-decoration: none;
+    text-shadow: 0 0 10px rgb(230,230,50);
+    transition: linear .3s;
+}
+
+#sidenav #menu ul li a.admin{
+    color: rgb(230,70,50);
+    font-size: 17px;
+    transition: linear .3s;
+}
+
+#sidenav #menu ul li a.admin:hover{
+    color: rgb(230,130,50);
+    text-decoration: none;
+    text-shadow: 0 0 10px rgb(240,150,50);
+    transition: linear .3s;
+}
+
+#sidenav #menu ul li a i{
+    margin-right: 10px;
+}
+
+#sidenav #menu ul li a:hover{
+    color: white;
+    text-decoration: none;
+    text-shadow: 0 0 10px rgb(200,200,250);
+    transition: linear .3s;
+}
+
+#sidenav #desc li {
+    font-size: 14px;
+    padding-top:0px;
+ }
+  
+  /* Page content */
+#main {
+    margin-left: 200px;
+}
+
+#main #content {
+    grid-column: 1;
+    margin-right: 220px;
+    margin-left: 20px;
+}
+
+#main #content .final {
+    border-bottom: 3px solid tomato;
+    padding-bottom: 10px;
+}
+
+#main #offer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    color: white;
+}
+
+#content #title{
+    display: flex;
+    justify-content: center;
+    border-bottom: 3px solid tomato;
+    font-family: 'Asul', sans-serif;
+}
+
+/* shop */
+#shopbar {
+    height: 70px;
+    background-color: yellow;
+}
+
+.item-content{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 4;
+}
+
+/* coin */
+.coin{
+    margin-top: 100px;
+    width: 250px;
+    opacity: 0.7;
+    box-shadow: 5px 5px 10px 5px rgb(20,20,20);
+    transition: linear .2s;
+    border-radius: 20px;
+}
+
+.coin:hover{
+    opacity: 1;
+    box-shadow: 5px 5px 10px 5px rgb(20,20,20);
+    transition: linear .2s;
+}

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<div id="bloco" class="text-center" style="background: url({{ asset('build/img/login.jpg') }}) top center no-repeat; background-size:cover;">
+    <div style="background: url({{ asset('build/img/border1.png') }}) top center no-repeat; background-size:cover; width:500px; height:500px;">
+        <div class="reg" style="margin-top:40px;">
+            <h1 style="color: lightgray; text-shadow: 0 0 10px lightgray;">Reset your password</h1>
+
+            <div style="color: lightgray;">
+            {{ form_start(resetForm) }}
+                {{ form_row(resetForm.plainPassword) }}
+                <button class="btn btn-sm btn-info">Reset password</button>
+            {{ form_end(resetForm) }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

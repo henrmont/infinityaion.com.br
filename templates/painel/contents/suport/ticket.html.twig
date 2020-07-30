@@ -1,0 +1,69 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:20px;">
+        <h1>Suport</h1>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240);">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-10">
+                    <div class="card" style="margin-top:10px; margin-bottom:5px; background-color:white;">
+                        <div class="card-body">
+                            <h4>{{ ticket[0].name }}</h4>
+                            <small style="color: red;">{{ ticket[0].createdAt|format_date() }}</small>
+                            <p>{{ ticket[0].message }}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2"></div>
+            </div>
+            {% if messages is defined %}
+                {% for msn in messages %}
+                    <div class="row">
+                        {% if msn.name == 'Admin' %}
+                            <div class="col-lg-2"></div>
+                            <div class="col-lg-10 text-right">
+                                <div class="card" style="margin-top:10px; margin-bottom:5px; background-color:white;">
+                                    <div class="card-body">
+                                        <h4>{{ msn.name }}</h4>
+                                        <small style="color: red;">{{ msn.createdAt|format_date() }}</small>
+                                        <p>{{ msn.message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="col-lg-10 text-left">
+                                <div class="card" style="margin-top:10px; margin-bottom:5px; background-color:white;">
+                                    <div class="card-body">
+                                        <h4>{{ msn.name }}</h4>
+                                        <small style="color: red;">{{ msn.createdAt|format_date() }}</small>
+                                        <p>{{ msn.message }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-2"></div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            {% if ticket[0].status == 'Open' %}
+                <form name="form" action="/suport/ticket/send/{{ticket[0].id}}">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="form-group">
+                            <label for="response">Responder:</label>
+                            <textarea class="form-control" rows="4" id="response" name="response"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <input type="submit" class="btn btn-blue" value="Enviar" style="margin-top:30px;">
+                    </div>
+                </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

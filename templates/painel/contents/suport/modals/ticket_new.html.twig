@@ -1,0 +1,35 @@
+{# The Modal #}
+<div class="modal fade" id="TicketNew">
+  {{form_start(ticket_new)}}
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Novo Ticket</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12 text-left">
+            {{ form_row(ticket_new.title) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-left">
+            {{ form_row(ticket_new.message) }}
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        {{ form_row(ticket_new.submit) }}
+        <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+  {{form_end(ticket_new)}}
+</div>

@@ -1,0 +1,62 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:10px;">
+        <h1>Feed de Notícias</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 text-right">
+            <form name="form-shop" action="{{ path('admin_reply') }}">
+            <label for="search" style="margin-top:5px;">Buscar:</label>
+        </div>
+        <div class="col-lg-4 text-left">
+            <input type="text" class="form-control" name="search" style="margin-left:20px;">
+        </div>
+        <div class="col-lg-1 text-left">
+            <input type="submit" class="btn btn-info" value="Filtrar">
+            </form>
+        </div>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240); margin-top:10px;">
+        <div class="card-body">
+            <div class="row">
+                <table class="table table-hover" id="tableMessage">
+                    <thead>
+                        <tr>
+                            <th width="25%" class="text-center">Char</th>
+                            <th width="45%" class="text-center">Item</th>
+                            <th width="25%" class="text-center">Hora</th>
+                            <th width="5%" class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in itens %}
+                            <tr>
+                                <td>{{ item.player_name }}</td>
+                                <td>{{ item.item_name }}</td>
+                                <td class="text-center">{{ item.createdAt|format_date() }}</td>
+                                <td class="text-center">
+                                    <button type="button" class="rbtn-check" data-toggle="modal" data-target="#reenviarItem" data-id="{{item.id}}">
+                                        <i class="fa fa-reply"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% include "painel/contents/admin/modals/item_reply.html.twig" %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 text-center">
+            <div class="navigation">
+                {{ knp_pagination_render(itens) }}
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+{% endblock %}

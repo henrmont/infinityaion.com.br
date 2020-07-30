@@ -1,0 +1,91 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:10px;">
+        <h1>Feed de Notícias</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 text-right">
+            <form name="form-shop" action="{{ path('admin_itens') }}">
+            <label for="search" style="margin-top:5px;">Buscar:</label>
+        </div>
+        <div class="col-lg-4 text-left">
+            <input type="text" class="form-control" name="search" style="margin-left:20px;">
+        </div>
+        <div class="col-lg-2 text-right">
+            <label for="search" style="margin-top:5px;">Categoria:</label>
+        </div>
+        <div class="col-lg-4 text-left">
+            <select class="form-control" id="sel1" name="category">
+                <option value="">Todos</option>
+                {% for cat in category %}
+                    <option value="{{cat.id}}">{{cat.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-lg-1 text-left">
+            <input type="submit" class="btn btn-info" value="Filtrar">
+            </form>
+        </div>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240); margin-top:10px;">
+        <div class="card-body">
+            <div class="row">
+                <table class="table table-hover" id="tableMessage">
+                    <thead>
+                        <tr>
+                            <th width="30%" class="text-center">Aion ID</th>
+                            <th width="46%" class="text-center">Título</th>
+                            <th width="8%" class="text-center"></th>
+                            <th width="8%" class="text-center"></th>
+                            <th width="8%" class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in itens %}
+                            <tr>
+                                <td class="text-center">{{ item.aion }}</td>
+                                <td>{{ item.name }}</td>
+                                <td class="text-center">
+                                    <button type="button" class="rbtn-edit" data-toggle="modal" data-target="#editItem" data-id="{{item.aion}}" data-level="{{item.level}}" data-name="{{item.name}}" data-price="{{item.price}}" data-amount="{{item.amount}}" data-discount="{{item.discount}}" data-bbcode="{{item.bbcode}}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    {% if item.promo %}
+                                        <button type="button" class="rbtn-report" data-toggle="modal" data-target="#promoItem" data-id="{{item.id}}">
+                                            <i class="fa fa-star"></i>
+                                        </button>
+                                    {% else %}
+                                        <button type="button" class="rbtn-check" data-toggle="modal" data-target="#promoItem" data-id="{{item.id}}">
+                                            <i class="fa fa-star"></i>
+                                        </button>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="rbtn-cancel" data-toggle="modal" data-target="#deleteItem" data-id="{{item.id}}" data-name="{{item.name}}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% include "painel/contents/admin/modals/item_edit.html.twig" %}
+                        {% include "painel/contents/admin/modals/item_del.html.twig" %}
+                        {% include "painel/contents/admin/modals/item_promo.html.twig" %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 text-center">
+            <div class="navigation">
+                {{ knp_pagination_render(itens) }}
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+{% endblock %}

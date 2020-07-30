@@ -1,0 +1,89 @@
+{# The Modal #}
+<div class="modal fade" id="editItem">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Editar Item</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form name="form-edit-item" action="{{ path('edit_item') }}">
+        <div class="row">
+          <div class="col-lg-4 text-left">
+            <label for="id">Aion ID:</label>
+            <input name="id" type="hidden" value="">
+            <span name="aion"></span>
+          </div>
+          <div class="col-lg-4 text-left">
+            <div class="form-group">
+              <label for="edittype">Selecione uma Categoria:</label>
+              <select class="form-control" id="edittype" name="edittype">
+                {% for item in category %}
+                  <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="col-lg-4 text-left">
+            <div class="form-group">
+              <label for="editlevel">Level:</label>
+              <input type="number" class="form-control" id="editlevel" name="editlevel">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-8 text-left">
+            <div class="form-group">
+              <label for="editname">Name:</label>
+              <input type="text" class="form-control" id="editname" name="editname">
+            </div>
+          </div>
+          <div class="col-lg-4 text-left">
+            {# {{ form_row(item_new.race) }} #}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4 text-left">
+            <div class="form-group">
+              <label for="editprice">Price:</label>
+              <input type="number" class="form-control" id="editprice" name="editprice">
+            </div>
+          </div>
+          <div class="col-lg-4 text-left">
+            <div class="form-group">
+              <label for="editamount">Amount:</label>
+              <input type="number" class="form-control" id="editamount" name="editamount">
+            </div>
+          </div>
+          <div class="col-lg-4 text-left">
+            <div class="form-group">
+              <label for="editdiscount">Discount:</label>
+              <input type="number" class="form-control" id="editdiscount" name="editdiscount">
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-6 text-left">
+            <div class="form-group">
+              <label for="editbbcode">BB Code:</label>
+              <input type="text" class="form-control" id="editbbcode" name="editbbcode">
+            </div>
+          </div>
+          <div class="col-lg-6 text-left">
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-info" value="Editar">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

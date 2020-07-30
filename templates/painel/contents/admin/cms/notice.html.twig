@@ -1,0 +1,87 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:20px;">
+        <h1>CMS - Notícias</h1>
+    </div>
+    <div class="row" style="margin-bottom:10px;">
+        <div class="col-lg-9">
+            <form name="form-ticket" class="form-inline" action="{{ path('admin_cms_notice') }}">
+                <label for="search">Buscar:</label>
+                <input type="text" class="form-control" name="search" style="margin-left:20px;">
+                <button type="submit" class="btn btn-primary" style="margin-left:20px;">Buscar</button>
+            </form>
+        </div>
+        <div class="col-lg-3 text-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#noticeNew">
+                Nova Notícia
+            </button>
+            {% include "painel/contents/admin/modals/notice_new.html.twig" %}
+        </div>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240);">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th width="10%" class="text-center">ID</th>
+                                <th width="46%" class="text-center">Título</th>
+                                <th width="20%" class="text-center">Data</th>
+                                <th width="8%" class="text-center"></th>
+                                <th width="8%" class="text-center"></th>
+                                <th width="8%" class="text-center"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in data %}
+                                <tr>
+                                    <td class="text-center">{{ item.id }}</td>
+                                    <td class="text-left">{{ item.Title }}</td>
+                                    <td class="text-center">{{ item.createdAt|format_date() }}</td>
+                                    <td class="text-center">
+                                        <button type="button" class="rbtn-edit" data-toggle="modal" data-target="#noticeEdit" data-id="{{ item.id }}">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </td>
+                                    <td class="text-center">
+                                        {% if item.isActive %}
+                                            <button type="button" class="rbtn-report" data-toggle="modal" data-target="#noticeActive" data-id="{{ item.id }}">
+                                                <i class="fa fa-times"></i>
+                                            </button>
+                                        {% else %}
+                                            <button type="button" class="rbtn-check" data-toggle="modal" data-target="#noticeActive" data-id="{{ item.id }}">
+                                                <i class="fa fa-check"></i>
+                                            </button>
+                                        {% endif %}
+                                    </td>
+                                    <td class="text-center">
+                                        <button type="button" class="rbtn-cancel" data-toggle="modal" data-target="#noticeDelete" data-id="{{ item.id }}">
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            {% include "painel/contents/admin/modals/notice_edit.html.twig" %}
+                            {% include "painel/contents/admin/modals/notice_active.html.twig" %}
+                            {% include "painel/contents/admin/modals/notice_del.html.twig" %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4"></div>
+                <div class="col-lg-4 text-center">
+                    <div class="navigation">
+                        {{ knp_pagination_render(data) }}
+                    </div>
+                </div>
+                <div class="col-lg-4"></div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

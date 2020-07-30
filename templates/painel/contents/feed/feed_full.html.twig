@@ -1,0 +1,126 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container" style="padding-left:100px; padding-right:100px;">
+    <div class="row" id="title">
+        <h1>Feed de Notícias</h1>
+    </div>
+            <div class="card" style="margin-top:10px; margin-bottom:5px; background-color:rgb(240,240,240);">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2 text-center">
+                            {% if feeds[0].user_image != '' %}
+                                <img src="{{ asset('uploads/profile/' ~ feeds[0].user_image)}}" style="width: 50px; height: 50px; border-radius:100%;">
+                            {% else %}
+                                <img src="{{ asset('build/img/perfil.jpg')}}" style="width: 50px; height: 50px; border-radius:100%;">
+                            {% endif %}
+                        </div>
+                        <div class="col-lg-8">
+                            <div><small>{{feeds[0].created_at|format_datetime()}}</small></div>
+                            <div><small  style="color:red;">{{feeds[0].name}}</small></div>
+                            <div>{{feeds[0].text}}</div>
+                        </div>
+                        {% if feeds[0].user_id == user %}
+                            <div class="col-lg-1 text-center">
+                                <div>
+                                    <button type="button" class="rbtn-edit" data-toggle="modal" data-target="#editFeed" data-direct="full" data-id="{{ feeds[0].id }}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-lg-1 text-center">
+                                <div><a href="/feed/disable/{{feeds[0].id}}" class="rbtn-cancel"><i class="fa fa-trash"></i></a></div>
+                            </div>
+                        {% else %}
+                            <div class="col-lg-1"></div>
+                            {% set auth = true %}
+                            {% for res in report %}
+                                {% if feeds[0].id == res.pid and res.type == 'Post' %}
+                                    {% set auth = false %}
+                                {% endif %}
+                            {% endfor %}
+                            {% if auth == true %}
+                                <div class="col-lg-1 text-center">
+                                    <button type="button" class="rbtn-report" data-toggle="modal" data-target="#feedReport" data-post="{{feeds[0].id}}" data-direct="full" data-url="/feed/report/{{feeds[0].id}}">
+                                        <i class="fa fa-thumbs-down"></i>
+                                    </button>
+                                </div>
+                            {% else %}
+                                <div class="col-lg-1"></div>    
+                            {% endif %}   
+                        {% endif %}
+                    </div>
+                    {% if feeds[0].image %}
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <img src="{{ asset('uploads/image/' ~ feeds[0].image)}}" style="width: 80%;">
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% for comment in comments %}
+                        {% if feeds[0].id == comment.feed %}
+                        <div class="card" style="margin-left:100px; margin-top:10px;">
+                            <div class="card-body" id="comment[{{feeds[0].id}}]">
+                                <div class="row">
+                                    <div class="col-lg-2">
+                                        {% if comment.user_image != '' %}
+                                            <img src="{{ asset('uploads/profile/' ~ comment.user_image)}}" style="width: 50px; height: 50px; border-radius:100%;">
+                                        {% else %}
+                                            <img src="{{ asset('build/img/perfil.jpg')}}" style="width: 50px; height: 50px; border-radius:100%;">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-lg-9">
+                                        <div><small>{{comment.created_at|format_datetime()}}</small></div>
+                                        <div><small  style="color:red;">{{comment.name}}</small></div>
+                                        <div>{{comment.text}}</div>
+                                    </div>
+                                    {% if comment.user_id == user %}
+                                        <div class="col-lg-1 text-center">
+                                            <div><a href="../../comment/disable/{{comment.id}}/{{comment.feed}}" class="rbtn-cancel"><i class="fa fa-trash"></i></a></div>
+                                        </div>
+                                    {% else %}
+                                        {% set auth = true %}
+                                        {% for res in report %}
+                                            {% if comment.id == res.pid and res.type == 'Comment' %}
+                                                {% set auth = false %}
+                                            {% endif %}
+                                        {% endfor %}
+                                        {% if auth == true %}
+                                            <div class="col-lg-1 text-center">
+                                                <button type="button" class="rbtn-report" data-toggle="modal" data-target="#feedReport" data-post="{{feeds[0].id}}" data-direct="full" data-url="/comment/report/{{comment.id}}">
+                                                    <i class="fa fa-thumbs-down"></i>
+                                                </button>
+                                            </div>
+                                        {% else %}
+                                            <div class="col-lg-1"></div>    
+                                        {% endif %}   
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="row">
+                        <form name="formfeed" action="../../feed/inc/{{feeds[0].id}}" style="margin-left:50px; margin-top:30px;">
+                            <div class="row">
+                                <input type="hidden" name="direct" value="full">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="comment">Comentar:</label>
+                                        <textarea class="form-control" rows="4" id="comment" name="comment" style="width: 45vw;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <input type="submit" class="btn-green" value="Comentar">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        {% include "painel/contents/feed/modals/edit_feed.html.twig" %}
+        {% include "painel/contents/feed/modals/feed_report.html.twig" %}
+</div>
+{% endblock %}

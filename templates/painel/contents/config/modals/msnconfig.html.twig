@@ -1,0 +1,73 @@
+{# The Modal #}
+<div class="modal fade" id="msnConfig">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Controle de Mensagens</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form name="form-senha" method="post" action="{{ path('config_msn') }}">
+        <div class="row">
+          <div class="col-lg-12 text-left" style="margin-left: 30px; margin-top: 15px;">
+            <div class="custom-control custom-switch">
+              {% if tags[0].tag_feed == 1 %}
+                <input type="checkbox" class="custom-control-input" id="feed" name="feed" checked>
+              {% else %}
+                <input type="checkbox" class="custom-control-input" id="feed" name="feed">
+              {% endif %}
+              <label class="custom-control-label" for="feed">Mensagens de feed de notícias.</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-left" style="margin-left: 30px; margin-top: 15px;">
+            <div class="custom-control custom-switch">
+              {% if tags[0].tag_shop == 1 %}
+                <input type="checkbox" class="custom-control-input" id="shop" name="shop" checked>
+              {% else %}
+                <input type="checkbox" class="custom-control-input" id="shop" name="shop">
+              {% endif %}
+              <label class="custom-control-label" for="shop">Mensagens de compra no shop.</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-left" style="margin-left: 30px; margin-top: 15px;">
+            <div class="custom-control custom-switch">
+              {% if tags[0].tag_coin == 1 %}
+                <input type="checkbox" class="custom-control-input" id="coin" name="coin" checked>
+              {% else %}
+                <input type="checkbox" class="custom-control-input" id="coin" name="coin">
+              {% endif %}
+              <label class="custom-control-label" for="coin">Mesagens de compra de Infinity coins.</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-left" style="margin-left: 30px; margin-top: 15px;">
+            <div class="custom-control custom-switch">
+              {% if tags[0].tag_ticket == 1 %}
+                <input type="checkbox" class="custom-control-input" id="ticket" name="ticket" checked>
+              {% else %}
+                <input type="checkbox" class="custom-control-input" id="ticket" name="ticket">
+              {% endif %}
+              <label class="custom-control-label" for="ticket">Mensagens de resposta de tickets.</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-blue" value="Aplicar">
+        <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

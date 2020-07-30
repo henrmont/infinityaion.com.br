@@ -1,0 +1,30 @@
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+#bloco {
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+
+
+.reg form {
+    padding: 50px;
+    padding-left: 170px;
+    padding-right: 150px;
+}
+
+.reg form input {
+    margin-top: 5px;
+}
+
+.reg form label {
+    color: lightgray;
+    margin-top: 5px;
+}

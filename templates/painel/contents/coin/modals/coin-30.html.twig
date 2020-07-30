@@ -1,0 +1,34 @@
+{# The Modal #}
+<div class="modal fade" id="coin-30">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">3000 Infinity Coins</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-12">
+            <img src="{{ asset('build/img/3000IC.png') }}" style="width: 400px;">
+            <div class="row text-left" style="margin-left: 10px; margin-top:10px;">
+              <strong style="font-size: 14px;">Li e aceito os Termos de Uso.</strong>
+            </div>
+            <div class="row text-left" style="margin-left: 10px;">
+              <strong style="font-size: 14px;">Entendo que essa transação se caracteriza como uma doação.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <a href="{{ path('coin_30') }}" class="btn btn-green" role="button" target="_blank">Comprar</a>
+        <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

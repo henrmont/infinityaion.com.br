@@ -1,0 +1,30 @@
+{# The Modal #}
+<div class="modal fade" id="editType">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Editar Categoria</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form name="form-edit-type" action="{{ path('edit_type') }}">
+        <div class="form-group">
+          <input name="id" type="hidden" value="">
+          <label for="name">Novo Nome:</label>
+          <input type="text" class="form-control" id="name" name="editname">
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-info" value="Editar">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

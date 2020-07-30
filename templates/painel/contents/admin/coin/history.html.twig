@@ -1,0 +1,49 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:10px;">
+        <h1>Histórico de coins</h1>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240); margin-top:10px;">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th width="30%" class="text-center">Usuário</th>
+                                <th width="30%" class="text-center">Data</th>
+                                <th width="20%" class="text-center">Preço</th>
+                                <th width="20%" class="text-center">Acul.</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% set acul = 0 %}
+                            {% for item in coin %}
+                                <tr>
+                                    {% set acul = acul + item.price %}
+                                    <td class="text-center">{{ item.name }}</td>
+                                    <td class="text-center">{{ item.mes|format_date() }}</td>
+                                    <td class="text-center">R$ {{ item.price }},00</td>
+                                    <td class="text-center">R$ {{ acul }},00</td>
+                                </tr>
+                            {% endfor %}
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top: 10px;">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 text-center" sty>
+            <div class="navigation">
+                {{ knp_pagination_render(coin) }}
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+{% endblock %}

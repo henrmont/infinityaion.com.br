@@ -1,0 +1,31 @@
+{# The Modal #}
+<div class="modal fade" id="reenviarItem">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Reenviar Item</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form name="form-delete-item" action="{{ path('admin_item_reply') }}">
+        <div class="row">
+          <div class="col-lg-12 text-left">
+            <input name="id" type="hidden" value="">
+            Tem certeza que deseja reenviar o item?.
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-info" value="Reenviar">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

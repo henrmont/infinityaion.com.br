@@ -1,0 +1,34 @@
+{# The Modal #}
+<div class="modal fade" id="resourceEdit">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      {# Modal Header #}
+      <div class="modal-header">
+        <h4 class="modal-title">Editar Recurso</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      {# Modal body #}
+      <div class="modal-body">
+        <form name="form-edit-item" action="{{ path('admin_cms_resource_edit') }}">
+        <input name="id" type="hidden" value="">
+        <div class="row">
+          <div class="col-lg-12 text-left">
+            <div class="form-group">
+              <label for="edittitle">Título:</label>
+              <input type="text" class="form-control" id="edittitle" name="edittitle">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Modal footer #}
+      <div class="modal-footer">
+        <input type="submit" class="btn btn-info" value="Editar">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>

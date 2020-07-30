@@ -1,0 +1,37 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row" id="title" style="margin-bottom:20px;">
+        <h1>Infinity Coin</h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 text-center">
+            <a href="#" data-toggle="modal" data-target="#coin-15"><img class="coin" src="{{ asset('build/img/1500IC.png') }}"></a>
+            {% include "painel/contents/coin/modals/coin-15.html.twig" %}
+        </div>
+        <div class="col-lg-4 text-center">
+            <a href="#" data-toggle="modal" data-target="#coin-20"><img class="coin" src="{{ asset('build/img/2000IC.png') }}"></a>
+            {% include "painel/contents/coin/modals/coin-20.html.twig" %}
+        </div>
+        <div class="col-lg-4 text-center">
+            <a href="#" data-toggle="modal" data-target="#coin-30"><img class="coin" src="{{ asset('build/img/3000IC.png') }}"></a>
+            {% include "painel/contents/coin/modals/coin-30.html.twig" %}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 text-center">
+            <a href="#" data-toggle="modal" data-target="#coin-50"><img class="coin" src="{{ asset('build/img/5000IC.png') }}"></a>
+            {% include "painel/contents/coin/modals/coin-50.html.twig" %}
+        </div>
+        <div class="col-lg-4 text-center">
+            <a href="#" data-toggle="modal" data-target="#coin-80"><img class="coin" src="{{ asset('build/img/8000IC.png') }}"></a>
+            {% include "painel/contents/coin/modals/coin-80.html.twig" %}
+        </div>
+        <div class="col-lg-4 text-center">
+            <a href="#" data-toggle="modal" data-target="#coin-100"><img class="coin" src="{{ asset('build/img/10000IC.png') }}"></a>
+            {% include "painel/contents/coin/modals/coin-100.html.twig" %}
+        </div>
+    </div>
+</div>
+{% endblock %}

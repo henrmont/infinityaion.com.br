@@ -1,0 +1,344 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:20px;">
+        <h1>Ranking</h1>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240);">
+        <div class="card-body">
+            <!-- Nav pills -->
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="pill" href="#geral">Geral</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#semanal">Semanal</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#diario">Diário</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="pill" href="#topkills">Top Kills</a>
+                </li>
+            </ul>
+
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div class="tab-pane container active" id="geral">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" class="text-center">#</th>
+                                        <th width="15%" class="text-center">Char</th>
+                                        <th width="15%" class="text-center">Race</th>
+                                        <th width="25%" class="text-center">Class</th>
+                                        <th width="25%" class="text-center">Rank</th>
+                                        <th width="15%" class="text-center">Abyss</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set count = 1 %}
+                                    {% for item in ranking %}
+                                        <tr>
+                                            <td class="text-center">{{ count }}</td>
+                                            <td>{{ item.charname }}</td>
+                                            <td class="text-center">{{ item.race }}</td>
+                                            <td class="text-center">
+                                                {% if item.pclass == 'SPIRIT_MASTER' %}
+                                                    SPIRIT MASTER
+                                                {% else %}
+                                                    {{item.pclass}}
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if item.ranking == 1 %}
+                                                Soldier Rank 9
+                                            {% elseif item.ranking == 2 %}
+                                                Soldier Rank 8
+                                            {% elseif item.ranking == 3 %}
+                                                Soldier Rank 7
+                                            {% elseif item.ranking == 4 %}
+                                                Soldier Rank 6
+                                            {% elseif item.ranking == 5 %}
+                                                Soldier Rank 5
+                                            {% elseif item.ranking == 6 %}
+                                                Soldier Rank 4
+                                            {% elseif item.ranking == 7 %}
+                                                Soldier Rank 3
+                                            {% elseif item.ranking == 8 %}
+                                                Soldier Rank 2
+                                            {% elseif item.ranking == 9 %}
+                                                Soldier Rank 1
+                                            {% elseif item.ranking == 10 %}
+                                                Army Star Office 1
+                                            {% elseif item.ranking == 11 %}
+                                                Army Star Office 2
+                                            {% elseif item.ranking == 12 %}
+                                                Army Star Office 3
+                                            {% elseif item.ranking == 13 %}
+                                                Army Star Office 4
+                                            {% elseif item.ranking == 14 %}
+                                                Army Star Office 5
+                                            {% elseif item.ranking == 15 %}
+                                                Army General
+                                            {% elseif item.ranking == 16 %}
+                                                Army Greater General
+                                            {% elseif item.ranking == 17 %}
+                                                Army Commander
+                                            {% elseif item.ranking == 18 %}
+                                                Governor
+                                            {% else %}
+                                                Supremo
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">{{ item.ap }}</td>
+                                            {% set count = count + 1 %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="semanal">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" class="text-center">#</th>
+                                        <th width="15%" class="text-center">Char</th>
+                                        <th width="15%" class="text-center">Race</th>
+                                        <th width="25%" class="text-center">Class</th>
+                                        <th width="25%" class="text-center">Rank</th>
+                                        <th width="15%" class="text-center">Abyss</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set count = 1 %}
+                                    {% for item in weekly %}
+                                        <tr>
+                                            <td class="text-center">{{ count }}</td>
+                                            <td>{{ item.charname }}</td>
+                                            <td class="text-center">{{ item.race }}</td>
+                                            <td class="text-center">
+                                                {% if item.pclass == 'SPIRIT_MASTER' %}
+                                                    SPIRIT MASTER
+                                                {% else %}
+                                                    {{item.pclass}}
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if item.ranking == 1 %}
+                                                Soldier Rank 9
+                                            {% elseif item.ranking == 2 %}
+                                                Soldier Rank 8
+                                            {% elseif item.ranking == 3 %}
+                                                Soldier Rank 7
+                                            {% elseif item.ranking == 4 %}
+                                                Soldier Rank 6
+                                            {% elseif item.ranking == 5 %}
+                                                Soldier Rank 5
+                                            {% elseif item.ranking == 6 %}
+                                                Soldier Rank 4
+                                            {% elseif item.ranking == 7 %}
+                                                Soldier Rank 3
+                                            {% elseif item.ranking == 8 %}
+                                                Soldier Rank 2
+                                            {% elseif item.ranking == 9 %}
+                                                Soldier Rank 1
+                                            {% elseif item.ranking == 10 %}
+                                                Army Star Office 1
+                                            {% elseif item.ranking == 11 %}
+                                                Army Star Office 2
+                                            {% elseif item.ranking == 12 %}
+                                                Army Star Office 3
+                                            {% elseif item.ranking == 13 %}
+                                                Army Star Office 4
+                                            {% elseif item.ranking == 14 %}
+                                                Army Star Office 5
+                                            {% elseif item.ranking == 15 %}
+                                                Army General
+                                            {% elseif item.ranking == 16 %}
+                                                Army Greater General
+                                            {% elseif item.ranking == 17 %}
+                                                Army Commander
+                                            {% elseif item.ranking == 18 %}
+                                                Governor
+                                            {% else %}
+                                                Supremo
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">{{ item.ap }}</td>
+                                            {% set count = count + 1 %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="diario">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" class="text-center">#</th>
+                                        <th width="15%" class="text-center">Char</th>
+                                        <th width="15%" class="text-center">Race</th>
+                                        <th width="25%" class="text-center">Class</th>
+                                        <th width="25%" class="text-center">Rank</th>
+                                        <th width="15%" class="text-center">Abyss</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set count = 1 %}
+                                    {% for item in daily %}
+                                        <tr>
+                                            <td class="text-center">{{ count }}</td>
+                                            <td>{{ item.charname }}</td>
+                                            <td class="text-center">{{ item.race }}</td>
+                                            <td class="text-center">
+                                                {% if item.pclass == 'SPIRIT_MASTER' %}
+                                                    SPIRIT MASTER
+                                                {% else %}
+                                                    {{item.pclass}}
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if item.ranking == 1 %}
+                                                Soldier Rank 9
+                                            {% elseif item.ranking == 2 %}
+                                                Soldier Rank 8
+                                            {% elseif item.ranking == 3 %}
+                                                Soldier Rank 7
+                                            {% elseif item.ranking == 4 %}
+                                                Soldier Rank 6
+                                            {% elseif item.ranking == 5 %}
+                                                Soldier Rank 5
+                                            {% elseif item.ranking == 6 %}
+                                                Soldier Rank 4
+                                            {% elseif item.ranking == 7 %}
+                                                Soldier Rank 3
+                                            {% elseif item.ranking == 8 %}
+                                                Soldier Rank 2
+                                            {% elseif item.ranking == 9 %}
+                                                Soldier Rank 1
+                                            {% elseif item.ranking == 10 %}
+                                                Army Star Office 1
+                                            {% elseif item.ranking == 11 %}
+                                                Army Star Office 2
+                                            {% elseif item.ranking == 12 %}
+                                                Army Star Office 3
+                                            {% elseif item.ranking == 13 %}
+                                                Army Star Office 4
+                                            {% elseif item.ranking == 14 %}
+                                                Army Star Office 5
+                                            {% elseif item.ranking == 15 %}
+                                                Army General
+                                            {% elseif item.ranking == 16 %}
+                                                Army Greater General
+                                            {% elseif item.ranking == 17 %}
+                                                Army Commander
+                                            {% elseif item.ranking == 18 %}
+                                                Governor
+                                            {% else %}
+                                                Supremo
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">{{ item.ap }}</td>
+                                            {% set count = count + 1 %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane container fade" id="topkills">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th width="5%" class="text-center">#</th>
+                                        <th width="15%" class="text-center">Char</th>
+                                        <th width="15%" class="text-center">Race</th>
+                                        <th width="25%" class="text-center">Class</th>
+                                        <th width="25%" class="text-center">Rank</th>
+                                        <th width="15%" class="text-center">Kills</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% set count = 1 %}
+                                    {% for item in kills %}
+                                        <tr>
+                                            <td class="text-center">{{ count }}</td>
+                                            <td>{{ item.charname }}</td>
+                                            <td class="text-center">{{ item.race }}</td>
+                                            <td class="text-center">
+                                                {% if item.pclass == 'SPIRIT_MASTER' %}
+                                                    SPIRIT MASTER
+                                                {% else %}
+                                                    {{item.pclass}}
+                                                {% endif %}
+                                            </td>
+                                            <td class="text-center">
+                                            {% if item.ranking == 1 %}
+                                                Soldier Rank 9
+                                            {% elseif item.ranking == 2 %}
+                                                Soldier Rank 8
+                                            {% elseif item.ranking == 3 %}
+                                                Soldier Rank 7
+                                            {% elseif item.ranking == 4 %}
+                                                Soldier Rank 6
+                                            {% elseif item.ranking == 5 %}
+                                                Soldier Rank 5
+                                            {% elseif item.ranking == 6 %}
+                                                Soldier Rank 4
+                                            {% elseif item.ranking == 7 %}
+                                                Soldier Rank 3
+                                            {% elseif item.ranking == 8 %}
+                                                Soldier Rank 2
+                                            {% elseif item.ranking == 9 %}
+                                                Soldier Rank 1
+                                            {% elseif item.ranking == 10 %}
+                                                Army Star Office 1
+                                            {% elseif item.ranking == 11 %}
+                                                Army Star Office 2
+                                            {% elseif item.ranking == 12 %}
+                                                Army Star Office 3
+                                            {% elseif item.ranking == 13 %}
+                                                Army Star Office 4
+                                            {% elseif item.ranking == 14 %}
+                                                Army Star Office 5
+                                            {% elseif item.ranking == 15 %}
+                                                Army General
+                                            {% elseif item.ranking == 16 %}
+                                                Army Greater General
+                                            {% elseif item.ranking == 17 %}
+                                                Army Commander
+                                            {% elseif item.ranking == 18 %}
+                                                Governor
+                                            {% else %}
+                                                Supremo
+                                            {% endif %}
+                                            </td>
+                                            <td class="text-center">{{ item.kills }}</td>
+                                            {% set count = count + 1 %}
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

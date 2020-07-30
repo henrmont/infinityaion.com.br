@@ -1,0 +1,59 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+
+    </div>
+    <div class="row">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Qtd</th>
+                    <th>Nome</th>
+                    <th>Char</th>
+                    <th>Preço</th>
+                    <th>Editar</th>
+                    <th>Apagar</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% set total = 0 %}
+                {% for item in data %}
+                    <tr>
+                        <td>{{ item.amount }}</td>
+                        <td>{{ item.name }}</td>
+                        <td>{{ item.char }}</td>
+                        {% set tu = item.amount * item.price %}
+                        <td>{{ tu }}</td>
+                        <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editShopItem" data-id="{{ item.id }}" data-set="{{ item.camount }}">
+                            Editar Item
+                        </button>
+                        </td>
+                        <td>
+                            <a href="{{ path('shop_del', { id : item.id }) }}" class="btn btn-danger" role="button">Excluir Item</a>
+                        </td>
+                        
+                    </tr>
+                    {% set total = total + tu %}                    
+                {% endfor %}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td>Total</td>
+                    <td>{{ total }}</td>
+                    <td>
+                        <a href="{{ path('shop_buy') }}" class="btn btn-info" role="button">Finalizar Compra</a>
+                    </td>
+                    <td>
+                        <a href="{{ path('shop_reset') }}" class="btn btn-warning" role="button">Limpar Carrinho</a>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        {% include "painel/contents/shop/modals/edit_item.html.twig" %}
+    </div>    
+</div>
+{% endblock %}

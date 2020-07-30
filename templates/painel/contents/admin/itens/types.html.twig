@@ -1,0 +1,54 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container">
+    <div class="row" id="title" style="margin-bottom:10px;">
+        <h1>Administrar Categorias</h1>
+    </div>
+    <div class="card" style="background-color:rgb(240,240,240); margin-top:10px;">
+        <div class="card-body">
+            <div class="row">
+                <table class="table table-hover" id="tableMessage">
+                    <thead>
+                        <tr>
+                            <th width="30%" class="text-center">ID</th>
+                            <th width="50%" class="text-center">Nome</th>
+                            <th width="10%"></th>
+                            <th width="10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in category %}
+                            <tr>
+                                <td class="text-center">{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                                <td class="text-center">
+                                    <button type="button" class="rbtn-edit" data-toggle="modal" data-target="#editType" data-id="{{item.id}}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </td>
+                                <td class="text-center">
+                                    <button type="button" class="rbtn-cancel" data-toggle="modal" data-target="#deleteType" data-id="{{item.id}}" data-name="{{item.name}}">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% include "painel/contents/admin/modals/type_edit.html.twig" %}
+                        {% include "painel/contents/admin/modals/type_del.html.twig" %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:10px;">
+        <div class="col-lg-4"></div>
+        <div class="col-lg-4 text-center">
+            <div class="navigation">
+                {{ knp_pagination_render(category) }}
+            </div>
+        </div>
+        <div class="col-lg-4"></div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div id="bloco" class="text-center" style="background: url(build/img/login2.jpg) center center no-repeat; background-size:cover;">
+    <div style="background: url('build/img/border1.png') top center no-repeat; background-size:cover; width:500px; height:500px;">
+        <h1 class="h3 mb-3 font-weight-normal" style="color: lightgray; margin-top: 50px; text-shadow: 0px 0px 10px lightgray;">Sign in</h1>
+        <div class="reg">
+        <form method="post">
+            
+
+            {# {% if app.user %}
+                <div class="mb-3">
+                    You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                </div>
+            {% endif %} #}
+
+            
+            <h5 style="color: lightgray;">Username</h5>
+            <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus style="font-size: 12px; background-color: rgba(250,250,250,0.5); border:none;">
+            <h5 style="color: lightgray; margin-top:10px;">Password</h5>
+            <input type="password" name="password" id="inputPassword" class="form-control" required style="font-size: 12px; background-color: rgba(250,250,250,0.5); border:none;">
+
+            <input type="hidden" name="_csrf_token"
+                value="{{ csrf_token('authenticate') }}"
+            >
+
+            {#
+                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+                See https://symfony.com/doc/current/security/remember_me.html
+
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" name="_remember_me"> Remember me
+                    </label>
+                </div>
+            #}
+
+            <div>
+                <button class="btn btn-sm btn-warning" type="submit" style="margin-top: 10px;">
+                    Sign in
+                </button>
+                <a href="{{ path('app_forgot_password_request') }}" class="btn btn-info btn-sm" role="button"  style="margin-top: 10px;">Reset Password</a>
+            </div>
+        </form>
+        </div>
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+    <div>
+</div>
+{% endblock %}

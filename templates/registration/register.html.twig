@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div id="bloco" class="text-center" style="background: url({{ asset('build/img/recover.jpg') }}) top center no-repeat; background-size:cover;">
+    <div style="background: url({{ asset('build/img/border3.png') }}) top center no-repeat; width:500px; height:500px;">
+    {% for flashError in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+    {% endfor %}
+
+    {# <h1>Register</h1> #}
+        <div class="reg">
+        {{ form_start(registrationForm) }}
+            {{ form_widget(registrationForm.username) }}
+            {{ form_widget(registrationForm.name) }}
+            {{ form_widget(registrationForm.email) }}
+            {{ form_widget(registrationForm.plainPassword, {
+                label: 'Password'
+            }) }}
+            {{ form_row(registrationForm.agreeTerms) }}
+
+            <button type="submit" class="btn btn-primary">Register</button>
+        {{ form_end(registrationForm) }}
+        </div>
+    </div>
+</div>
+{% endblock %}

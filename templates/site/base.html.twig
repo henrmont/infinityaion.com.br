@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+        <meta content="" name="descriptison">
+        <meta content="" name="keywords">
+
+        <!-- Favicons -->
+        {# <link href="assets/img/favicon.png" rel="icon"> #}
+        {# <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> #}
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:300,300i,400,400i,600,600i,700,700i|Satisfy|Comic+Neue:300,300i,400,400i,700,700i" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
+        <!-- =======================================================
+        * Template Name: Delicious - v2.1.0
+        * Template URL: https://bootstrapmade.com/delicious-free-restaurant-bootstrap-theme/
+        * Author: BootstrapMade.com
+        * License: https://bootstrapmade.com/license/
+        ======================================================== -->
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>
