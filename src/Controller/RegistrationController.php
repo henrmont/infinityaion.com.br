@@ -164,6 +164,6 @@ class RegistrationController extends AbstractController
         $em->getRepository(Aion::class)->enableAccount($user->getUsername());
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('painel');
+        return $this->redirectToRoute('shop');
     }
 }
