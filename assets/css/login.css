@@ -12,8 +12,6 @@
     display: flex;
 }
 
-
-
 .reg form {
     padding: 50px;
     padding-left: 170px;
@@ -25,6 +23,23 @@
 }
 
 .reg form label {
+    color: lightgray;
+    margin-top: 5px;
+}
+
+.log form {
+    padding-top: 100px;
+    padding-left: 100px;
+    padding-right: 100px;
+}
+
+.log form input {
+    margin-top: 10px;
+    background-color: rgba(255,255,255,.75);
+    border: none;
+}
+
+.log form label {
     color: lightgray;
     margin-top: 5px;
 }

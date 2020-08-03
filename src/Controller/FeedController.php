@@ -122,6 +122,7 @@ class FeedController extends AbstractController
                 'feeds'         =>  $result,
                 'comments'      =>  $comments,
                 'user'          =>  $user->getId(),
+                'notify'        =>  $user->getTagNotify(),
                 'report'        =>  $report,
                 'status_race'   =>  $user->getRace(),
                 'status_name'   =>  $user->getName(),

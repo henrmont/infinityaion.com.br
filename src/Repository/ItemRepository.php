@@ -43,7 +43,7 @@ class ItemRepository extends ServiceEntityRepository
             ')
             ->where('item.name LIKE :filter')
             ->setParameter('filter','%'.$filter.'%')
-            ->orderBy('item.name','ASC')
+            ->orderBy('item.promo','DESC')
         ;
 
         if($race != null){

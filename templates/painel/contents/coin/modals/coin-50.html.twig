@@ -26,8 +26,12 @@
 
       {# Modal footer #}
       <div class="modal-footer">
-        <a href="{{ path('coin_50') }}" class="btn btn-green" role="button" target="_blank">Comprar</a>
-        <button type="button" class="btn btn-red" data-dismiss="modal">Fechar</button>
+        <form target="_blank" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+          <input type="hidden" name="cmd" value="_s-xclick">
+          <input type="hidden" name="hosted_button_id" value="59EA6B8TT69HJ">
+          <input class="coin-submit" data-coin="50" type="image" src="https://www.paypalobjects.com/pt_BR/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - A maneira fácil e segura de enviar pagamentos online!">
+          <img alt="" border="0" src="https://www.paypalobjects.com/pt_BR/i/scr/pixel.gif" width="1" height="1">
+        </form>
       </div>
     </div>
   </div>

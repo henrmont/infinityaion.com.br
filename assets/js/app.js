@@ -17,15 +17,23 @@ import '../css/painel.css';
 import '../js/main.js';
 import '../js/painel.js';
 
+// other
+// import '../js/other.js';
+// import '../css/other.css';
+
+
 // Vendors
  import '../vendor/icofont/icofont.min.css';
  import '../vendor/boxicons/css/boxicons.min.css';
  import '../vendor/animate.css/animate.min.css';
  import '../vendor/venobox/venobox.css';
+ import '../vendor/aos/aos.css';
 
  import '../vendor/jquery.easing/jquery.easing.min.js';
  import '../vendor/jquery-sticky/jquery.sticky.js';
  import '../vendor/venobox/venobox.min.js';
+ import '../vendor/isotope-layout/isotope.pkgd.min.js';
+ import '../vendor/aos/aos.js';
 
 // Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';

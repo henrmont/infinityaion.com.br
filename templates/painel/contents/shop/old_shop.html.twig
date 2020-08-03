@@ -1,0 +1,143 @@
+{% extends 'painel/painel.html.twig' %}
+
+{% block content %}
+<div class="container title">
+    <div class="row" id="title" style="margin-bottom:20px;">
+        <div class="col-lg-12 text-center">
+            <h3>Infinity Shop</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-1 text-right">
+            <form name="form-shop" action="{{ path('shop') }}">
+            <label for="search" style="margin-top:5px;">Buscar:</label>
+        </div>
+        <div class="col-lg-4 text-left">
+            <input type="text" class="form-control" name="search" style="margin-left:20px;">
+        </div>
+        <div class="col-lg-2 text-right">
+            <label for="search" style="margin-top:5px;">Categoria:</label>
+        </div>
+        <div class="col-lg-4 text-left">
+            <select class="form-control" id="sel1" name="category">
+                <option value="">Todos</option>
+                {% for cat in category %}
+                    <option value="{{cat.id}}">{{cat.name}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-lg-1 text-left">
+            <input type="submit" class="btn btn-info" value="Filtrar">
+            </form>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    {% set divisor = 1 %}
+    <div class="row">
+        {% for item in data %}
+            {% if item.aion == 169630003 %}
+                {% if cube[0].countItem <= 3 %}
+                    <div class="col-lg-3 item-content text-center" style="margin-top: 50px;">
+                        <div style="grid-column: 1/3; height: 80px; background: url({{ asset('build/img/shop/' ~ item.aion ~ '.png')}}) center center no-repeat; background-size: contain;"><img src="{{ asset('build/img/borda.png')}}" style="width:80px;"></div>
+                        <div style="grid-column: 1/3; height: 45px;"><small>{{ item.name }}</small></div>
+                        {% if item.promo %}
+                            <div style="grid-column: 1; color: rgb(160,160,160); text-decoration: line-through;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
+                            <div style="grid-column: 2; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price - (item.price * (item.discount /100 )) }}</div>
+                        {% else %}
+                            <div style="grid-column: 1/3; margin-left: 50px; margin-right: 50px; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
+                        {% endif %}
+                        <div class="text-center">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showitem" data-id="{{ item.aion }}" data-set="{{ item.amount }}">
+                                <i class="fa fa-dollar"></i> Comprar
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#itemPresente" data-id="{{ item.aion }}" data-set="{{ item.name }}">
+                                <i class="fa fa-gift"></i> Presente
+                            </button>
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="col-lg-3 item-content text-center" style="margin-top: 50px;">
+                        <div style="grid-column: 1/3; height: 80px; background: url({{ asset('build/img/shop/' ~ item.aion ~ '.png')}}) center center no-repeat; background-size: contain;"><img src="{{ asset('build/img/borda.png')}}" style="width:80px;"></div>
+                        <div style="grid-column: 1/3; height: 45px;"><small>{{ item.name }}</small></div>
+                        {% if item.promo %}
+                            <div style="grid-column: 1; color: rgb(160,160,160); text-decoration: line-through;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
+                            <div style="grid-column: 2; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price - (item.price * (item.discount /100 )) }}</div>
+                        {% else %}
+                            <div style="grid-column: 1/3; margin-left: 50px; margin-right: 50px; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
+                        {% endif %}
+                        <div class="text-center">
+                            <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#showitem" data-id="{{ item.aion }}" data-set="{{ item.amount }}" disabled>
+                                <i class="fa fa-dollar"></i> Comprar
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#itemPresente" data-id="{{ item.aion }}" data-set="{{ item.name }}">
+                                <i class="fa fa-gift"></i> Presente
+                            </button>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="col-lg-3 item-content text-center" style="margin-top: 50px;">
+                    <div style="grid-column: 1/3; height: 80px; background: url({{ asset('build/img/shop/' ~ item.aion ~ '.png')}}) center center no-repeat; background-size: contain;"><img src="{{ asset('build/img/borda.png')}}" style="width:80px;"></div>
+                    <div style="grid-column: 1/3; height: 45px;"><small>{{ item.name }}</small></div>
+                    {% if item.promo %}
+                        <div style="grid-column: 1; color: rgb(160,160,160); text-decoration: line-through;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
+                        <div style="grid-column: 2; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price - (item.price * (item.discount /100 )) }}</div>
+                    {% else %}
+                        <div style="grid-column: 1/3; margin-left: 50px; margin-right: 50px; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
+                    {% endif %}
+                    {% set vip = item.aion|slice(0,3) %}
+                    {% if vip == 519 %}
+                        <div class="text-center" style="font-size: 12px;">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#vipMember" data-id="{{ item.aion }}" data-set="{{ item.name }}">
+                                <i class="fa fa-dollar"></i> Comprar
+                            </button>
+                        </div>
+                        <div class="text-center" style="font-size: 12px;">
+                            <button type="button" class="btn btn-success btn-small" data-toggle="modal" data-target="#itemPresente" data-id="{{ item.aion }}" data-set="{{ item.name }}">
+                                <i class="fa fa-gift"></i> Presente
+                            </button>
+                        </div>
+                    {% else %}
+                        <div class="text-center">
+                            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showitem" data-id="{{ item.aion }}" data-set="{{ item.amount }}">
+                                <i class="fa fa-dollar"></i> Comprar
+                            </button>
+                        </div>
+                        <div class="text-center">
+                            <button type="button" class="btn btn-success" data-toggle="modal" data-target="#itemPresente" data-id="{{ item.aion }}" data-set="{{ item.name }}">
+                                <i class="fa fa-gift"></i> Presente
+                            </button>
+                        </div>
+                    {% endif %}
+                </div>
+            {% endif %}
+            {% if divisor == 4 %}
+                </div>
+                <div class="row">
+            {% endif %}
+            {% set divisor = divisor + 1 %}
+        {% endfor %}
+        {% include "painel/contents/shop/modals/show_item.html.twig" %}
+        {% include "painel/contents/shop/modals/vip.html.twig" %}
+        {% include "painel/contents/shop/modals/item_presente.html.twig" %}
+    </div>
+    <ul>
+        
+    </ul>
+</div>
+<div class="row">
+    <div class="col-lg-4"></div>
+    <div class="col-lg-4 text-center">
+        <div class="navigation">
+            {{ knp_pagination_render(data) }}
+        </div>
+    </div>
+    <div class="col-lg-4"></div>
+</div>
+
+{% endblock %}

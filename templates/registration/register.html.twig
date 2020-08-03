@@ -4,13 +4,13 @@
 
 {% block body %}
 <div id="bloco" class="text-center" style="background: url({{ asset('build/img/recover.jpg') }}) top center no-repeat; background-size:cover;">
-    <div style="background: url({{ asset('build/img/border3.png') }}) top center no-repeat; width:500px; height:500px;">
+    <div style="background: url({{ asset('build/img/border3.png') }}) center center no-repeat; width:500px; height:500px;">
     {% for flashError in app.flashes('verify_email_error') %}
         <div class="alert alert-danger" role="alert">{{ flashError }}</div>
     {% endfor %}
 
-    {# <h1>Register</h1> #}
-        <div class="reg">
+    <h1 style="margin-top: -50px; text-shadow: 0 0 10px lightgray; color: lightgray;">Register</h1>
+        <div class="log">
         {{ form_start(registrationForm) }}
             {{ form_widget(registrationForm.username) }}
             {{ form_widget(registrationForm.name) }}

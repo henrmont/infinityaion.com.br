@@ -3,89 +3,154 @@
 {% block title %}Hello PainelController!{% endblock %}
 
 {% block body %}
-<nav id="sidenav">
-  <div class="logo text-center"><img src="{{ asset('build/img/infinityaion.png')}}" style="width: 80%"></div>
-  <div id="perfil">
-    {% if status_image != ''  %}
-      <img src="{{ asset('uploads/profile/' ~ status_image)}}">
+<!-- ======= Header ======= -->
+<header id="painel_header" class="fixed-top d-flex align-items-center" style="background-color: rgba(10,10,10,0.9);">
+<div class="container d-flex align-items-center">
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr 1fr;">
+    {# <div class="logo mr-auto"> #}
+    <div class="profile">
+    {% if status_race == 'ASMODIANS' %}
+      <div style="background: url({{ asset('build/img/border-asmos.png') }}) center center no-repeat; background-size: cover; width: 100px; height: 100px;">
+        {% if status_image != '' %}
+          <img src="{{ asset('build/img/perfil.jpg') }}" style="width:50px; margin: 25px; border-radius: 100%;" alt="" class="img-fluid">
+        {% else %}
+          <img src="{{ asset('build/img/perfil.jpg') }}" style="width:50px; margin: 25px; border-radius: 100%;" alt="" class="img-fluid">
+        {% endif %}
+      </div>
+    {% elseif status_race == 'ELYOS' %}
+      <div style="background: url({{ asset('build/img/border-elyos.png') }}) center center no-repeat; background-size: cover; width: 100px; height: 100px;">
+        {% if status_image != '' %}
+          <img src="{{ asset('build/img/perfil.jpg') }}" style="width:50px; margin: 25px; border-radius: 100%;" alt="" class="img-fluid">
+        {% else %}
+          <img src="{{ asset('build/img/perfil.jpg') }}" style="width:50px; margin: 25px; border-radius: 100%;" alt="" class="img-fluid">
+        {% endif %}
+      </div>
     {% else %}
-      <img src="{{ asset('build/img/perfil.jpg') }}">
+      <div style="width: 100px; height: 100px;">
+        {% if status_image != '' %}
+          <img src="{{ asset('build/img/perfil.jpg') }}" style="width:50px; margin: 25px; border-radius: 100%;" alt="" class="img-fluid">
+        {% else %}
+          <img src="{{ asset('build/img/perfil.jpg') }}" style="width:50px; margin: 25px; border-radius: 100%;" alt="" class="img-fluid">
+        {% endif %}
+      </div>
     {% endif %}
+    </div>
+    <div class="profile text-right">
+      <span>{{status_name}}<span><br>
+      <span>{{expire}}<span><br>
+      <span>{{status_coins}} IC<span><br>
+      <span>Position 2<span>
+    </div>
+    <div class="profile text-left" style="padding-left: 10px; color: lightgray;">
+      <i class="fas fa-user"></i><br>
+      <i class="fas fa-crown"></i><br>
+      <i class="fas fa-coins"></i><br>
+      <i class="fas fa-medal"></i>
+    </div>
   </div>
-  <div id="desc" style="padding-left: 40px;">
-    <ul>
-      {% if status_race == 'ASMODIANS' %}
-        <li><strong style="color: rgb(10,150,250);">{{status_name}}</strong></li>
-      {% elseif status_race == 'ELYOS' %}
-        <li><strong style="color: green;">{{status_name}}</strong></li>
-      {% else %}
-        <li><strong>{{status_name}}</strong></li>
-      {% endif %}
-      <li><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{status_coins}} IC</li>
-      {% if expire %}
-        <li><img src="{{ asset('build/img/crown.png') }}" style="width: 20px; margin-right: 5px;">{{expire}}</li>
-      {% endif %}
-    </ul>  
-  </div>
-  <div id="menu" style="padding-left: 40px;">
-    <ul>
-      <li><a href="{{ path('feed') }}"><i class="fa fa-rss"></i>Feed de Notícias</a></li>
-      <li><a href="{{ path('message') }}"><i class="fa fa-envelope"></i>Mensagens</a></li>
-      <li><a href="{{ path('ranking') }}"><i class="fa fa-book"></i>Ranking</a></li>
-      <li><a href="{{ path('shop') }}" class="shop"><i class="fa fa-tags"></i>Infinity Shop</a></li>
-      <li><a href="{{ path('coin') }}" class="shop"><i class="fa fa-credit-card"></i>Infinity Coin</a></li>
-      <li><a href="{{ path('history') }}"><i class="fa fa-history"></i>Histórico</a></li>
-      <li><a href="{{ path('suport') }}"><i class="fa fa-headphones"></i>Suport</a></li>
-      <li><a href="{{ path('config') }}"><i class="fa fa-cog"></i>Configurações</a></li>
-      {% if is_granted('ROLE_ADMIN') %}
-        <li><a href="{{ path('admin') }}" class="admin"><i class="fa fa-cog"></i>Admin</a></li>
-      {% endif %}
-      <li><a href="{{ path('app_logout') }}"><i class="fa fa-sign-out"></i>Sair</a></li>
-    </ul>
-  </div>
-</nav>
 
-<!-- Use any element to open the sidenav -->
-{# <span onclick="openNav()">open</span> #}
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-<div id="main">
-  <div id="content">
-  {% block content %}{% endblock %}
-  </div>
-  <div id="offer">
-    {% set count = 0 %}
-    {% set rgb = 50 %}
-    {% for item in promo %}
-      {% if count < 3 %}
-        <div class="row" style="background-color: rgb({{rgb}},{{rgb}},{{rgb}}); margin-left: auto; margin-right: auto;">
-          <div class="col-lg-12 item-content text-center">
-            <div style="grid-column: 1/3; height: 80px; background: url({{ asset('build/img/shop/' ~ item.aionId ~ '.png')}}) center center no-repeat; background-size: contain;"><img src="{{ asset('build/img/borda.png')}}" style="width:80px;"></div>
-            <div style="grid-column: 1/3; height: 45px;"><small>{{ item.name }}</small></div>
-            {% if item.promo %}
-                <div style="grid-column: 1; color: rgb(160,160,160); text-decoration: line-through;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
-                <div style="grid-column: 2; height: 25px; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price - (item.price * (item.discount /100 )) }}</div>
-            {% else %}
-                <div style="grid-column: 1/3; margin-left: 50px; margin-right: 50px; color: lightyellow; background-color: rgb(10,100,100); border-radius: 100%;"><img src="{{ asset('build/img/infinitycoin.jpg') }}" style="width: 15px; border-radius: 100%; margin-right: 5px;">{{ item.price }}</div>
-            {% endif %}
-            <div class="text-center">
-                <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#showitem" data-id="{{ item.aionId }}" data-set="{{ item.amount }}">
-                    <i class="fa fa-dollar"></i> Comprar
-                </button>
-            </div>
-            <div class="text-center">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#itemPresente" data-id="{{ item.aionId }}" data-set="{{ item.name }}">
-                    <i class="fa fa-gift"></i> Presente
-                </button>
-            </div>
+    <nav class="nav-menu d-none d-lg-block">
+    <ul>
+        <li>
+          <a href="#" class="menu-link" name="menu-link-1">
+          <div class="text-center menu-icon" name="menu-icon-1">
+            <i class="fa fa-rss"></i>
           </div>
-        </div>
-      {% endif %}
-      {% set count = count + 1 %}
-      {% set rgb = rgb + 25 %}
-    {% endfor %}
-  </div>
-</div>    
-{% include "painel/contents/shop/modals/show_item.html.twig" %}
-{% include "painel/contents/shop/modals/item_presente.html.twig" %}
+          <div class="text-center">
+            <small class="menu-font" name="menu-font-1">Feed</small>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="menu-link" name="menu-link-2">
+          <div class="text-center menu-icon" name="menu-icon-2">
+            <i class="fas fa-paper-plane"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font" name="menu-font-2">Messages</small>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="menu-link" name="menu-link-3">
+          <div class="text-center menu-icon-battle" name="menu-icon-3">
+            <i class="fas fa-medal"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font-battle" name="menu-font-3">Infinity Battle</small>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('shop') }}" class="menu-link" name="menu-link-4">
+          <div class="text-center menu-icon-shop" name="menu-icon-4">
+            <i class="fas fa-store"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font-shop" name="menu-font-4">Infinity Store</small>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="{{ path('coin') }}" class="menu-link" name="menu-link-5">
+          <div class="text-center menu-icon-shop" name="menu-icon-5">
+            <i class="fas fa-coins"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font-shop" name="menu-font-5">Infinity Coin</small>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="menu-link" name="menu-link-6">
+          <div class="text-center menu-icon" name="menu-icon-6">
+            <i class="fas fa-cog"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font" name="menu-font-6">Settings</small>
+          </div>
+          </a>
+        </li>
+        {% if is_granted('ROLE_ADMIN') %}
+        <li>
+          <a href="#" class="menu-link" name="menu-link-7">
+          <div class="text-center menu-icon-manager" name="menu-icon-7">
+            <i class="fas fa-user-cog"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font-manager" name="menu-font-7">Manager</small>
+          </div>
+          </a>
+        </li>
+        {% endif %}
+        {% if notify %}
+        <li>
+          <a href="#" class="menu-link" name="menu-link-8">
+          <div class="text-center menu-icon-suport" name="menu-icon-8">
+            <i class="fas fa-cannabis"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font-suport" name="menu-font-8">Drugstore</small>
+          </div>
+          </a>
+        </li>
+        {% endif %}
+        <li>
+          <a href="{{ path('app_logout') }}" class="menu-link" name="menu-link-9">
+          <div class="text-center menu-icon" name="menu-icon-9">
+            <i class="fas fa-door-open"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font" name="menu-font-9">Exit</small>
+          </div>
+          </a>
+        </li>
+
+    </ul>
+    </nav><!-- .nav-menu -->
+
+</div>
+</header><!-- End Header -->
+{% block content %}{% endblock %}
 {% endblock %}

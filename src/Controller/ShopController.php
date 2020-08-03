@@ -62,6 +62,7 @@ class ShopController extends AbstractController
                 'data'      =>  $result,
                 'players'   =>  $players,
                 'category'  =>  $category,
+                'notify'    =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),

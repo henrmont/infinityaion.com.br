@@ -34,9 +34,10 @@ class CoinController extends AbstractController
                 $data = 'Sem VIP';
             }
             $chars = $em->getRepository(User::class)->searchPlayers();
-                
+
             return $this->render('painel/contents/coin/coin.html.twig',[
                 'chars'     =>  $chars,
+                'notify'        =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -46,11 +47,11 @@ class CoinController extends AbstractController
                 'expire'    =>  $data
             ]);
         }catch(\Exception $e){
-            $this->addFlash(
-                'notice',
-                'Faça o login.'
-            );
-            return $this->redirectToRoute('site');
+            // $this->addFlash(
+            //     'notice',
+            //     'Faça o login.'
+            // );
+            // return $this->redirectToRoute('site');
         } 
     }
 
@@ -78,7 +79,7 @@ class CoinController extends AbstractController
             $em->persist($coin);
             $em->flush();
             
-            return $this->redirect('https://pag.ae/7W89dci2R');
+            return $this->redirectToRoute('coin');
         }catch(\Exception $e){
             $this->addFlash(
                 'notice',
@@ -112,7 +113,7 @@ class CoinController extends AbstractController
             $em->persist($coin);
             $em->flush();
             
-            return $this->redirect('https://pag.ae/7W89dCH7R');
+            return $this->redirectToRoute('coin');
         }catch(\Exception $e){
             $this->addFlash(
                 'notice',
@@ -146,7 +147,7 @@ class CoinController extends AbstractController
             $em->persist($coin);
             $em->flush();
             
-            return $this->redirect('https://pag.ae/7W6z9nWb4');
+            return $this->redirectToRoute('coin');
         }catch(\Exception $e){
             $this->addFlash(
                 'notice',
@@ -180,7 +181,7 @@ class CoinController extends AbstractController
             $em->persist($coin);
             $em->flush();
             
-            return $this->redirect('https://pag.ae/7W38W-FnR');
+            return $this->redirectToRoute('coin');
         }catch(\Exception $e){
             $this->addFlash(
                 'notice',
@@ -214,7 +215,7 @@ class CoinController extends AbstractController
             $em->persist($coin);
             $em->flush();
             
-            return $this->redirect('https://pag.ae/7W38XaexR');
+            return $this->redirectToRoute('coin');
         }catch(\Exception $e){
             $this->addFlash(
                 'notice',
@@ -248,7 +249,7 @@ class CoinController extends AbstractController
             $em->persist($coin);
             $em->flush();
             
-            return $this->redirect('https://pag.ae/7W38XiQpn');
+            return $this->redirectToRoute('coin');
         }catch(\Exception $e){
             $this->addFlash(
                 'notice',
