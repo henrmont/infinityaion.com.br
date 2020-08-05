@@ -96,6 +96,11 @@
         $(location).attr('href',url);
     });
 
+    $('.btn-coin').click(function(){
+        var url = '/coin/' + $(this).data('coin');
+        $(location).attr('href',url);
+    });
+
     $('[data-target="#showitem"]').click(function(){
         $('[name="aionId"]').val($(this).data('id'));
         $('[name="image"]').attr('src',"build/img/shop/info/"+$(this).data('id')+".png");
@@ -246,5 +251,8 @@
             $('#form-redefinir').submit();
         }
     })
+
+    //mercado pago script
+    
 
 })(jQuery);
