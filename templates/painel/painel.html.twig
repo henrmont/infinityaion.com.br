@@ -53,7 +53,7 @@
     <nav class="nav-menu d-none d-lg-block">
     <ul>
         <li>
-          <a href="#" class="menu-link" name="menu-link-1">
+          <a href="#" class="menu-link" name="menu-link-1" style="pointer-events: none;">
           <div class="text-center menu-icon" name="menu-icon-1">
             <i class="fa fa-rss"></i>
           </div>
@@ -63,7 +63,7 @@
           </a>
         </li>
         <li>
-          <a href="#" class="menu-link" name="menu-link-2">
+          <a href="#" class="menu-link" name="menu-link-2" style="pointer-events: none;">
           <div class="text-center menu-icon" name="menu-icon-2">
             <i class="fas fa-paper-plane"></i>
           </div>
@@ -73,7 +73,17 @@
           </a>
         </li>
         <li>
-          <a href="#" class="menu-link" name="menu-link-3">
+          <a href="#" class="menu-link" name="menu-link-6" style="pointer-events: none;">
+          <div class="text-center menu-icon" name="menu-icon-6">
+            <i class="fas fa-hands-helping"></i>
+          </div>
+          <div class="text-center">
+            <small class="menu-font" name="menu-font-6">Guild</small>
+          </div>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="menu-link" name="menu-link-3" style="pointer-events: none;">
           <div class="text-center menu-icon-battle" name="menu-icon-3">
             <i class="fas fa-medal"></i>
           </div>
@@ -102,19 +112,9 @@
           </div>
           </a>
         </li>
-        <li>
-          <a href="#" class="menu-link" name="menu-link-6">
-          <div class="text-center menu-icon" name="menu-icon-6">
-            <i class="fas fa-cog"></i>
-          </div>
-          <div class="text-center">
-            <small class="menu-font" name="menu-font-6">Settings</small>
-          </div>
-          </a>
-        </li>
         {% if is_granted('ROLE_ADMIN') %}
         <li>
-          <a href="#" class="menu-link" name="menu-link-7">
+          <a href="{{ path('admin') }}" class="menu-link" name="menu-link-7">
           <div class="text-center menu-icon-manager" name="menu-icon-7">
             <i class="fas fa-user-cog"></i>
           </div>
@@ -136,15 +136,10 @@
           </a>
         </li>
         {% endif %}
-        <li>
-          <a href="{{ path('app_logout') }}" class="menu-link" name="menu-link-9">
-          <div class="text-center menu-icon" name="menu-icon-9">
-            <i class="fas fa-door-open"></i>
-          </div>
-          <div class="text-center">
-            <small class="menu-font" name="menu-font-9">Exit</small>
-          </div>
-          </a>
+        <li style="padding-left:30px;">
+          <div class="text-left"><a href="{{ path('app_logout') }}" style="padding: 5px; height: 30px; pointer-events: none;"><i class="fas fa-question-circle"></i><small style="margin-left:10px;">Help</small></a></div>
+          <div class="text-left"><a href="{{ path('app_logout') }}" style="padding: 5px; height: 30px; pointer-events: none;"><i class="fas fa-cog"></i><small style="margin-left:10px;">Settings</small></a></div>
+          <div class="text-left"><a href="{{ path('app_logout') }}" style="padding: 5px; height: 30px;"><i class="fas fa-door-open"></i><small style="margin-left:10px;">Exit</small></a></div>
         </li>
 
     </ul>

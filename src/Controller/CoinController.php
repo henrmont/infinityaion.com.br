@@ -42,6 +42,7 @@ class CoinController extends AbstractController
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
                 'status_coins'     =>  $user->getCoin(),
+                'status_email'      =>  $user->getEmail(),
                 'promo'     =>  $promo,
                 'players'   =>  $players,
                 'expire'    =>  $data

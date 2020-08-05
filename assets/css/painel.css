@@ -20,7 +20,7 @@
   .nav-menu a {
     display: block;
     position: relative;
-    color: white;
+    color: rgb(100,100,100);
     padding: 9px 14px;
     transition: 0.3s;
     font-size: 15px;

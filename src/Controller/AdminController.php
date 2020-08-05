@@ -145,6 +145,7 @@ class AdminController extends AbstractController
                 'cat_sel'   =>  $select_itemtype,
                 'item_new'  =>  $item_form->createView(),
                 'item_sel'  =>  $select_item,
+                'notify'            => $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -201,6 +202,7 @@ class AdminController extends AbstractController
                 'chars'     =>  $chars,
                 'itens'             =>  $result,
                 'category'          =>  $cat,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'       =>  $user->getRace(),
                 'status_name'       =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -298,6 +300,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/itens/history.html.twig', [
                 'chars'     =>  $chars,
                 'itens'             =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'       =>  $user->getRace(),
                 'status_name'       =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -398,6 +401,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/itens/types.html.twig', [
                 'chars'     =>  $chars,
                 'category'             =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'       =>  $user->getRace(),
                 'status_name'       =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -487,6 +491,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/suport/suport.html.twig', [
                 'chars'     =>  $chars,
                 'data'          =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -530,6 +535,7 @@ class AdminController extends AbstractController
                 'chars'     =>  $chars,
                 'ticket'    =>  $ticket,
                 'messages'  =>  $ticketMessage,
+                'notify'            => $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -642,6 +648,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/coin/coin.html.twig', [
                 'chars'     =>  $chars,
                 'data'          =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -749,6 +756,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/coin/history.html.twig', [
                 'chars'     =>  $chars,
                 'coin'              =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'       =>  $user->getRace(),
                 'status_name'       =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -797,6 +805,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/feed/posts.html.twig', [
                 'chars'     =>  $chars,
                 'report'              =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'       =>  $user->getRace(),
                 'status_name'       =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -845,6 +854,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/feed/comments.html.twig', [
                 'chars'     =>  $chars,
                 'report'              =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'       =>  $user->getRace(),
                 'status_name'       =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -993,6 +1003,7 @@ class AdminController extends AbstractController
             return $this->render('painel/contents/admin/player/player.html.twig', [
                 'chars'     =>  $chars,
                 'data'          =>  $result,
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -1115,6 +1126,7 @@ class AdminController extends AbstractController
                 'chars'     =>  $chars,
                 'data'          =>  $result,
                 'form'   =>  $carousel_form->createView(),
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -1288,6 +1300,7 @@ class AdminController extends AbstractController
                 'chars'     =>  $chars,
                 'data'          =>  $result,
                 'form'   =>  $notice_form->createView(),
+                'notify'            =>  $user->getTagnotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
@@ -1460,6 +1473,7 @@ class AdminController extends AbstractController
                 'chars'     =>  $chars,
                 'data'          =>  $result,
                 'form'   =>  $resource_form->createView(),
+                'notify'            =>  $user->getTagNotify(),
                 'status_race'      =>  $user->getRace(),
                 'status_name'      =>  $user->getName(),
                 'status_image'      =>  $user->getImage(),
