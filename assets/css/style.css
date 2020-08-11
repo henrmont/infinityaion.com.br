@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 40px;
+  max-height: 70px;
 }
 
 @media (max-width: 992px) {
@@ -431,8 +431,6 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   margin-bottom: 30px;
   font-size: 48px;
-  /* font-weight: 700; */
-  font-family: 'Great Vibes', cursive;
 }
 
 .hero h2 span {
@@ -996,7 +994,6 @@ section {
 # Events
 --------------------------------------------------------------*/
 .events {
-  background: url(../img/events-bg.jpg) center center no-repeat;
   background-size: cover;
   position: relative;
 }
@@ -1210,7 +1207,7 @@ section {
 # Chefs
 --------------------------------------------------------------*/
 .chefs {
-  background: url("../img/chefs-bg.jpg") center center no-repeat;
+  background: url("../img/download.png") center center no-repeat;
   background-size: cover;
   padding: 60px 0;
   position: relative;
@@ -1317,7 +1314,6 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
   padding: 80px 0;
-  background: url("../img/testimonials-bg.jpg") no-repeat;
   background-position: center center;
   background-size: cover;
   position: relative;

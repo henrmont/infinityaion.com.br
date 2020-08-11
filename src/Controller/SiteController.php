@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\CmsCarousel;
+use App\Entity\CmsNotice;
+use App\Entity\CmsResource;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -22,18 +25,31 @@ class SiteController extends AbstractController
      */
     public function index()
     {
-        return $this->render('site/index.html.twig', [
-            'controller_name' => 'SiteController',
+        $em = $this->getDoctrine()->getManager();
+
+        $carousel = $em->getRepository(CmsCarousel::class)->findBy([
+            'isActive'  =>  true
+        ]);
+
+        return $this->render('site/index.html.twig',[
+            'carousel'  =>  $carousel
         ]);
     }
 
     /**
-     * @Route("/site/isolate", name="site_isolate")
+     * @Route("/site/isolate/{id}", name="site_isolate")
      */
-    public function isolate()
+    public function isolate($id)
     {
-        return $this->render('site/isolate.html.twig', [
-            'controller_name' => 'SiteController',
+        $em = $this->getDoctrine()->getManager();
+
+        $carousel = $em->getRepository(CmsCarousel::class)->findOneBy([
+            'isActive'  =>  true,
+            'id'        =>  $id
+        ]);
+
+        return $this->render('site/isolate/'.$id.'.html.twig', [
+            'carousel'  =>  $carousel
         ]);
     }
 }

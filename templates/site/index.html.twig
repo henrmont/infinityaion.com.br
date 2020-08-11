@@ -7,7 +7,7 @@
 <!-- ======= Top Bar ======= -->
 <section id="topbar" class="d-none d-lg-flex align-items-center fixed-top topbar-transparent">
 <div class="container text-right">
-    <i class="icofont-phone"></i> +1 5589 55488 55
+    <i class="icofont-phone" style="color: green;"></i> +1 5589 55488 55
     <i class="icofont-clock-time icofont-rotate-180"></i> Mon-Sat: 11:00 AM - 23:00 PM
 </div>
 </section>
@@ -17,9 +17,9 @@
 <div class="container d-flex align-items-center">
 
     <div class="logo mr-auto">
-    <h1 class="text-light"><a href="index.html"><span>Delicious</span></a></h1>
+    {# <h1 class="text-light"><a href="index.html"><span>Delicious</span></a></h1> #}
     <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    <img src="{{ asset('build/img/infinityaion.png') }}" alt="">
     </div>
 
     <nav class="nav-menu d-none d-lg-block">
@@ -39,6 +39,14 @@
 </div>
 </header><!-- End Header -->
 
+{# ++++++++++ Flash Bags +++++++++++ #}
+{% for message in app.flashes('notice') %}
+<div class="alert alert-warning alert-dismissible" style="position: absolute; top: 130px; left:30px; z-index:1000;">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Alerta! </strong>{{ message }}
+</div>
+{% endfor %}
+
 <!-- ======= Hero Section ======= -->
 <section class="hero" id="hero">
 <div class="hero-container">
@@ -48,49 +56,36 @@
 
     <div class="carousel-inner" role="listbox">
 
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background: url({{ asset('build/img/slide/slide-1.jpg') }});">
-        <div class="carousel-container">
-            <div class="carousel-content">
-            <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Restaurant</h2>
-            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-            <div>
-                <a href="{{ path('site_isolate') }}" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
+        {% set active = true %}
+        {% for item in carousel %}
+          {% if active == true %}
+            <!-- Slide 1 -->
+            <div class="carousel-item active" style="background: url({{ asset('uploads/cms/' ~ item.imageFull)}}); background-size:cover; background-position: center center;">
+                <div class="carousel-container" style="background-color: rgba(10,10,10,0.5);">
+                    <div class="carousel-content">
+                        <h2 class="animate__animated animate__fadeInDown">{{item.title}}</h2>
+                        <p class="animate__animated animate__fadeInUp">{{item.text}}</p>
+                        <div>
+                            <a href="{{ path('site_isolate', {id:item.id}) }}" class="btn-menu animate__animated animate__fadeInUp scrollto">Mais detalhes</a>
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% set active = false %}
+          {% else %}
+            <div class="carousel-item active" style="background: url({{ asset('uploads/cms/' ~ item.imageFull)}}); background-size:cover; background-position: center center;">
+                <div class="carousel-container" style="background-color: rgba(10,10,10,0.5);">
+                    <div class="carousel-content">
+                        <h2 class="animate__animated animate__fadeInDown">{{item.title}}</h2>
+                        <p class="animate__animated animate__fadeInUp">{{item.text}}</p>
+                        <div>
+                            <a href="{{ path('site_isolate') }}" class="btn-menu animate__animated animate__fadeInUp scrollto">Mais detalhes</a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        </div>
-
-        <!-- Slide 2 -->
-        <div class="carousel-item" style="background: url({{ asset('build/img/slide/slide-2.jpg') }});">
-        <div class="carousel-container">
-            <div class="carousel-content">
-            <h2 class="animate__animated animate__fadeInDown">Lorem Ipsum Dolor</h2>
-            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-            <div>
-                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
-            </div>
-            </div>
-        </div>
-        </div>
-
-        <!-- Slide 3 -->
-        <div class="carousel-item" style="background: url({{ asset('build/img/slide/slide-3.jpg') }});">
-        <div class="carousel-background"><img src="{{ asset('build/img/slide/slide-3.jpg') }}" alt=""></div>
-        <div class="carousel-container">
-            <div class="carousel-content">
-            <h2 class="animate__animated animate__fadeInDown">Sequi ea ut et est quaerat</h2>
-            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-            <div>
-                <a href="#menu" class="btn-menu animate__animated animate__fadeInUp scrollto">Our Menu</a>
-                <a href="#book-a-table" class="btn-book animate__animated animate__fadeInUp scrollto">Book a Table</a>
-            </div>
-            </div>
-        </div>
-        </div>
-
+          {% endif %}
+        {% endfor %}
     </div>
 
     <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
@@ -115,31 +110,34 @@
 
     <div class="row">
 
-        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url({{ asset('build/img/about.jpg') }});'>
-        <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+        <div class="col-lg-5 align-items-stretch video-box" style='background-image: url({{ asset('build/img/about.png') }});'>
+        <a href="https://www.youtube.com/watch?v=crwgSgtf3oE" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
         </div>
 
         <div class="col-lg-7 d-flex flex-column justify-content-center align-items-stretch">
 
         <div class="content">
-            <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
+            <h3>Uma nova batalha está para começar, <strong>junte seus amigos e explore Atreia.</strong></h3>
             <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
+            Aion Upheaval, implementa uma série de mecanismos que irá intensificar a experiência no jogo. Confira agora o que está por vir:
             </p>
-            <p class="font-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-            </p>
+            <p class="font-italic">Novos Mapas:</p>
             <ul>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+            <li><i class="bx bx-check-double"></i>Cygnea, Enshar, Levinshor e Kaldor</li>
             </ul>
-            <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            <p class="font-italic">Nova Classe:</p>
+            <ul>
+            <li><i class="bx bx-check-double"></i>Aethertech</li>
+            </ul>
+            <p class="font-italic">Novo Mecanismo:</p>
+            <ul>
+            <li><i class="bx bx-check-double"></i>Glory Points</li>
+            </ul>
+            <p class="font-italic">Novas Batalhas:</p>
+            <ul>
+            <li><i class="bx bx-check-double"></i>Iron Wall Warfront, Engulfed Ophidan Bridge e Idgel Dome</li>
+            </ul>
+            <p class="font-italic">E muito mais...</p>
         </div>
 
         </div>
@@ -154,33 +152,35 @@
     <div class="container">
 
     <div class="section-title">
-        <h2>Why choose <span>Our Restaurant</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        <h2>Informações do servidor</h2>
     </div>
 
     <div class="row">
 
         <div class="col-lg-4">
         <div class="box">
-            <span>01</span>
-            <h4>Lorem Ipsum</h4>
-            <p>Ulamco laboris nisi ut aliquip ex ea commodo consequat. Et consectetur ducimus vero placeat</p>
+            <span><i class="fab fa-codepen"></i></span>
+            <h4>Core</h4>
+            <p>Aion 4.9 - Upheaval</p>
+            <br>
         </div>
         </div>
 
         <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="box">
-            <span>02</span>
-            <h4>Repellat Nihil</h4>
-            <p>Dolorem est fugiat occaecati voluptate velit esse. Dicta veritatis dolor quod et vel dire leno para dest</p>
+            <span><i class="far fa-flag"></i></span>
+            <h4>Host</h4>
+            <p>São Paulo (SP) - BR</p>
+            <br>
         </div>
         </div>
 
         <div class="col-lg-4 mt-4 mt-lg-0">
         <div class="box">
-            <span>03</span>
-            <h4> Ad ad velit qui</h4>
-            <p>Molestiae officiis omnis illo asperiores. Aut doloribus vitae sunt debitis quo vel nam quis</p>
+            <span><i class="far fa-times-circle"></i></span>
+            <h4>Rates</h4>
+            <p>EXP: Normal: 10x / VIP: 20x<br>
+            AP: Normal: 1x / VIP: 2x</p>
         </div>
         </div>
 
@@ -194,8 +194,7 @@
     <div class="container">
 
     <div class="section-title">
-        <h2>Team</h2>
-        <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        <h2>Explore o Infinity Aion</h2>
     </div>
 
     <div class="row">
@@ -203,17 +202,13 @@
         <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
         <div class="member">
             <div class="member-img">
-            <img src="{{ asset('build/img/team/team-1.jpg') }}" class="img-fluid" alt="">
+            <img src="{{ asset('build/img/team/01.png') }}" class="img-fluid" alt="">
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
             </div>
             </div>
             <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Chief Executive Officer</span>
+            <h4>Sieges</h4>
             </div>
         </div>
         </div>
@@ -221,17 +216,13 @@
         <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
         <div class="member">
             <div class="member-img">
-            <img src="{{ asset('build/img/team/team-2.jpg') }}" class="img-fluid" alt="">
+            <img src="{{ asset('build/img/team/02.png') }}" class="img-fluid" alt="">
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
             </div>
             </div>
             <div class="member-info">
-            <h4>Sarah Jhonson</h4>
-            <span>Product Manager</span>
+            <h4>Instâncias</h4>
             </div>
         </div>
         </div>
@@ -239,17 +230,13 @@
         <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
         <div class="member">
             <div class="member-img">
-            <img src="{{ asset('build/img/team/team-3.jpg') }}" class="img-fluid" alt="">
+            <img src="{{ asset('build/img/team/03.png') }}" class="img-fluid" alt="">
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
             </div>
             </div>
             <div class="member-info">
-            <h4>William Anderson</h4>
-            <span>CTO</span>
+            <h4>Landing Reinforcement</h4>
             </div>
         </div>
         </div>
@@ -257,17 +244,73 @@
         <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
         <div class="member">
             <div class="member-img">
-            <img src="{{ asset('build/img/team/team-4.jpg') }}" class="img-fluid" alt="">
+            <img src="{{ asset('build/img/team/04.png') }}" class="img-fluid" alt="">
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
             </div>
             </div>
             <div class="member-info">
-            <h4>Amanda Jepson</h4>
-            <span>Accountant</span>
+            <h4>Invasion</h4>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member">
+            <div class="member-img">
+            <img src="{{ asset('build/img/team/05.png') }}" class="img-fluid" alt="">
+            <div class="social">
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
+            </div>
+            </div>
+            <div class="member-info">
+            <h4>Mapas</h4>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member">
+            <div class="member-img">
+            <img src="{{ asset('build/img/team/06.png') }}" class="img-fluid" alt="">
+            <div class="social">
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
+            </div>
+            </div>
+            <div class="member-info">
+            <h4>Rift's</h4>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member">
+            <div class="member-img">
+            <img src="{{ asset('build/img/team/07.png') }}" class="img-fluid" alt="">
+            <div class="social">
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
+            </div>
+            </div>
+            <div class="member-info">
+            <h4>Shopping</h4>
+            </div>
+        </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 d-flex align-items-stretch">
+        <div class="member">
+            <div class="member-img">
+            <img src="{{ asset('build/img/team/08.png') }}" class="img-fluid" alt="">
+            <div class="social">
+                <a href=""><i class="far fa-eye"></i> Ver detalhes</a>
+            </div>
+            </div>
+            <div class="member-info">
+            <h4>Stigmas</h4>
             </div>
         </div>
         </div>
@@ -283,27 +326,45 @@
     <div class="container">
 
     <div class="section-title">
-        <h2>Check our <span>Specials</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        <h2>Classes</h2>
+        <p>Conheça as classes do Aion.</p>
     </div>
 
     <div class="row">
         <div class="col-lg-3">
         <ul class="nav nav-tabs flex-column">
             <li class="nav-item">
-            <a class="nav-link active show" data-toggle="tab" href="#tab-1">Modi sit est</a>
+            <a class="nav-link active show" data-toggle="tab" href="#tab-1">Aethertech</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-2">Unde praesentium sed</a>
+            <a class="nav-link" data-toggle="tab" href="#tab-2">Assasin</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-3">Pariatur explicabo vel</a>
+            <a class="nav-link" data-toggle="tab" href="#tab-3">Chanter</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-4">Nostrum qui quasi</a>
+            <a class="nav-link" data-toggle="tab" href="#tab-4">Cleric</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" data-toggle="tab" href="#tab-5">Iusto ut expedita aut</a>
+            <a class="nav-link" data-toggle="tab" href="#tab-5">Gladiator</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-6">Gunner</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-7">Ranger</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-8">Sorcerer</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-9">Songweaver</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-10">Spiritmaster</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#tab-11">Templar</a>
             </li>
         </ul>
         </div>
@@ -312,60 +373,132 @@
             <div class="tab-pane active show" id="tab-1">
             <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Architecto ut aperiam autem id</h3>
+                <h3>Aethertech</h3>
                 <p class="font-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
                 <p>Et nobis maiores eius. Voluptatibus ut enim blanditiis atque harum sint. Laborum eos ipsum ipsa odit magni. Incidunt hic ut molestiae aut qui. Est repellat minima eveniet eius et quis magni nihil. Consequatur dolorem quaerat quos qui similique accusamus nostrum rem vero</p>
                 </div>
                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{{ asset('build/img/specials-1.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('build/img/specials/01.png') }}" alt="" class="img-fluid">
                 </div>
             </div>
             </div>
             <div class="tab-pane" id="tab-2">
             <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Et blanditiis nemo veritatis excepturi</h3>
+                <h3>Assasin</h3>
                 <p class="font-italic">Qui laudantium consequatur laborum sit qui ad sapiente dila parde sonata raqer a videna mareta paulona marka</p>
                 <p>Ea ipsum voluptatem consequatur quis est. Illum error ullam omnis quia et reiciendis sunt sunt est. Non aliquid repellendus itaque accusamus eius et velit ipsa voluptates. Optio nesciunt eaque beatae accusamus lerode pakto madirna desera vafle de nideran pal</p>
                 </div>
                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{{ asset('build/img/specials-2.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('build/img/specials/02.png') }}" alt="" class="img-fluid">
                 </div>
             </div>
             </div>
             <div class="tab-pane" id="tab-3">
             <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Impedit facilis occaecati odio neque aperiam sit</h3>
+                <h3>Chanter</h3>
                 <p class="font-italic">Eos voluptatibus quo. Odio similique illum id quidem non enim fuga. Qui natus non sunt dicta dolor et. In asperiores velit quaerat perferendis aut</p>
                 <p>Iure officiis odit rerum. Harum sequi eum illum corrupti culpa veritatis quisquam. Neque necessitatibus illo rerum eum ut. Commodi ipsam minima molestiae sed laboriosam a iste odio. Earum odit nesciunt fugiat sit ullam. Soluta et harum voluptatem optio quae</p>
                 </div>
                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{{ asset('build/img/specials-3.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('build/img/specials/03.png') }}" alt="" class="img-fluid">
                 </div>
             </div>
             </div>
             <div class="tab-pane" id="tab-4">
             <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Fuga dolores inventore laboriosam ut est accusamus laboriosam dolore</h3>
+                <h3>Cleric</h3>
                 <p class="font-italic">Totam aperiam accusamus. Repellat consequuntur iure voluptas iure porro quis delectus</p>
                 <p>Eaque consequuntur consequuntur libero expedita in voluptas. Nostrum ipsam necessitatibus aliquam fugiat debitis quis velit. Eum ex maxime error in consequatur corporis atque. Eligendi asperiores sed qui veritatis aperiam quia a laborum inventore</p>
                 </div>
                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{{ asset('build/img/specials-4.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('build/img/specials/04.png') }}" alt="" class="img-fluid">
                 </div>
             </div>
             </div>
             <div class="tab-pane" id="tab-5">
             <div class="row">
                 <div class="col-lg-8 details order-2 order-lg-1">
-                <h3>Est eveniet ipsam sindera pad rone matrelat sando reda</h3>
+                <h3>Gladiator</h3>
                 <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
                 <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
                 </div>
                 <div class="col-lg-4 text-center order-1 order-lg-2">
-                <img src="{{ asset('build/img/specials-5.jpg') }}" alt="" class="img-fluid">
+                <img src="{{ asset('build/img/specials/05.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-6">
+            <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Gunner</h3>
+                <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{{ asset('build/img/specials/06.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-7">
+            <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Ranger</h3>
+                <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{{ asset('build/img/specials/07.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-8">
+            <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Sorcerer</h3>
+                <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{{ asset('build/img/specials/08.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-9">
+            <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Songweaver</h3>
+                <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{{ asset('build/img/specials/09.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-10">
+            <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Spiritmaster</h3>
+                <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{{ asset('build/img/specials/10.png') }}" alt="" class="img-fluid">
+                </div>
+            </div>
+            </div>
+            <div class="tab-pane" id="tab-11">
+            <div class="row">
+                <div class="col-lg-8 details order-2 order-lg-1">
+                <h3>Templar</h3>
+                <p class="font-italic">Omnis blanditiis saepe eos autem qui sunt debitis porro quia.</p>
+                <p>Exercitationem nostrum omnis. Ut reiciendis repudiandae minus. Omnis recusandae ut non quam ut quod eius qui. Ipsum quia odit vero atque qui quibusdam amet. Occaecati sed est sint aut vitae molestiae voluptate vel</p>
+                </div>
+                <div class="col-lg-4 text-center order-1 order-lg-2">
+                <img src="{{ asset('build/img/specials/11.png') }}" alt="" class="img-fluid">
                 </div>
             </div>
             </div>
@@ -381,72 +514,72 @@
     <div class="container-fluid">
 
     <div class="section-title">
-        <h2>Some photos from <span>Our Restaurant</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        <h2>Mídia</h2>
+        <p>Veja a beleza de Atreia...</p>
     </div>
 
     <div class="row no-gutters">
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-1.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-1.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/01.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/01.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-2.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-2.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/02.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/02.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-3.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-3.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/03.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/03.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-4.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-4.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/04.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/04.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-5.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-5.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/05.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/05.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-6.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-6.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/06.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/06.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-7.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-7.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/07.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/07.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
 
         <div class="col-lg-3 col-md-4">
         <div class="gallery-item">
-            <a href="{{ asset('build/img/gallery/gallery-8.jpg') }}" class="venobox" data-gall="gallery-item">
-            <img src="{{ asset('build/img/gallery/gallery-8.jpg') }}" alt="" class="img-fluid">
+            <a href="{{ asset('build/img/gallery/08.png') }}" class="venobox" data-gall="gallery-item">
+            <img src="{{ asset('build/img/gallery/08.png') }}" alt="" class="img-fluid">
             </a>
         </div>
         </div>
@@ -461,23 +594,20 @@
     <div class="container">
 
     <div class="section-title">
-        <h2>Our Proffesional <span>Chefs</span></h2>
-        <p>Ut possimus qui ut temporibus culpa velit eveniet modi omnis est adipisci expedita at voluptas atque vitae autem.</p>
+        <h2>Downloads</h2>
+        <p>Baixe o jogo e comece uma nova aventura.</p>
     </div>
 
     <div class="row">
 
         <div class="col-lg-4 col-md-6">
         <div class="member">
-            <div class="pic"><img src="{{ asset('build/img/chefs/chefs-1.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="pic"><img src="{{ asset('build/img/chefs/01.png') }}" class="img-fluid" alt=""></div>
             <div class="member-info">
-            <h4>Walter White</h4>
-            <span>Master Chef</span>
+            <h4>Patch Infinity Aion</h4>
+            <span>Via google drive</span>
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="fas fa-cloud-download-alt"></i> Download</a>
             </div>
             </div>
         </div>
@@ -485,15 +615,12 @@
 
         <div class="col-lg-4 col-md-6">
         <div class="member">
-            <div class="pic"><img src="{{ asset('build/img/chefs/chefs-2.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="pic"><img src="{{ asset('build/img/chefs/02.png') }}" class="img-fluid" alt=""></div>
             <div class="member-info">
-            <h4>Sarah Jhonson</h4>
-            <span>Patissier</span>
+            <h4>Client Aion 4.9</h4>
+            <span>Via torrent</span>
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="fas fa-file-download"></i> Download</a>
             </div>
             </div>
         </div>
@@ -501,15 +628,12 @@
 
         <div class="col-lg-4 col-md-6">
         <div class="member">
-            <div class="pic"><img src="{{ asset('build/img/chefs/chefs-3.jpg') }}" class="img-fluid" alt=""></div>
+            <div class="pic"><img src="{{ asset('build/img/chefs/03.png') }}" class="img-fluid" alt=""></div>
             <div class="member-info">
-            <h4>William Anderson</h4>
-            <span>Cook</span>
+            <h4>Client Aion 4.9</h4>
+            <span>Via google drive</span>
             <div class="social">
-                <a href=""><i class="icofont-twitter"></i></a>
-                <a href=""><i class="icofont-facebook"></i></a>
-                <a href=""><i class="icofont-instagram"></i></a>
-                <a href=""><i class="icofont-linkedin"></i></a>
+                <a href=""><i class="fas fa-cloud-download-alt"></i> Download</a>
             </div>
             </div>
         </div>
@@ -525,14 +649,10 @@
 <!-- ======= Footer ======= -->
 <footer id="footer">
 <div class="container">
-    <h3>Delicious</h3>
-    <p>Et aut eum quis fuga eos sunt ipsa nihil. Labore corporis magni eligendi fuga maxime saepe commodi placeat.</p>
+    <h3>Infinity Aion</h3>
     <div class="social-links">
-    <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
     <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
     <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-    <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
     </div>
     <div class="copyright">
     &copy; Copyright <strong><span>Delicious</span></strong>. All Rights Reserved

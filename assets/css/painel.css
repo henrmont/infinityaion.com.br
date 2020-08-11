@@ -17,7 +17,7 @@
     float: left;
   }
   
-  .nav-menu a {
+  .nav-menu a.link {
     display: block;
     position: relative;
     color: rgb(100,100,100);
