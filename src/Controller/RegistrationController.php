@@ -32,7 +32,7 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator): Response
     {
-        return $this->redirectToRoute('site');
+        // return $this->redirectToRoute('site');
         
         try{
             $user = new User();
