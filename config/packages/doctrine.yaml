@@ -56,7 +56,7 @@ doctrine:
                         type: annotation
                         dir: '%kernel.project_dir%/src/Entity'
                         prefix: 'App\Entity'
-                        alias: Aion
+                        alias: aion
             aiongs:
                 connection: aiongs
                 mappings:
@@ -65,7 +65,7 @@ doctrine:
                         type: annotation
                         dir: '%kernel.project_dir%/src/Entity'
                         prefix: 'App\Entity'
-                        alias: Aiongs
+                        alias: aiongs
             maxsuport:
                 connection: maxsuport
                 mappings:
@@ -74,7 +74,7 @@ doctrine:
                         type: annotation
                         dir: '%kernel.project_dir%/src/Entity'
                         prefix: 'App\Entity'
-                        alias: Maxsuport
+                        alias: maxsuport
             
         # mappings:
         #     App:

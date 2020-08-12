@@ -40,6 +40,8 @@ class ResetPasswordController extends AbstractController
      */
     public function request(Request $request, MailerInterface $mailer): Response
     {
+        return $this->redirectToRoute('site');
+        
         $form = $this->createForm(ResetPasswordRequestFormType::class);
         $form->handleRequest($request);
 
@@ -167,7 +169,7 @@ class ResetPasswordController extends AbstractController
         $email = (new TemplatedEmail())
             ->from(new Address('noreply@infinityaion.com.br', 'Reset Password'))
             ->to($user->getEmail())
-            ->subject('Your password reset request')
+            ->subject('Infinity Aion - Reset Password')
             ->htmlTemplate('reset_password/email.html.twig')
             ->context([
                 'resetToken' => $resetToken,

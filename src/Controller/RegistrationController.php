@@ -32,6 +32,8 @@ class RegistrationController extends AbstractController
      */
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, GuardAuthenticatorHandler $guardHandler, LoginAuthenticator $authenticator): Response
     {
+        return $this->redirectToRoute('site');
+        
         try{
             $user = new User();
             $aion = new Aion();
@@ -43,9 +45,6 @@ class RegistrationController extends AbstractController
                 $chkmail = $entityManagerUser->getRepository(User::class)->findBy([
                     'email'     =>  $request->request->get('registration_form')
                 ]);
-
-                // print_r($chkmail);
-                // die();
 
                 $con = $this->getDoctrine()->getConnection();
                 $con->beginTransaction();
@@ -72,10 +71,6 @@ class RegistrationController extends AbstractController
 
 
                     $data = $request->request->get('registration_form');
-                    // echo "<pre>";
-                    // print_r($data['username']);
-                    // echo "</pre>";
-                    // die();
 
                     $date = new DateTime('now');
                     $date->modify('+3 day');
@@ -86,15 +81,9 @@ class RegistrationController extends AbstractController
                     $aion->setActivated(0);
                     $aion->setPassword(base64_encode(sha1($data['plainPassword'], true)));
 
-                    // echo 'Teste';
-                    // die();
-
                     $entityManagerUser = $this->getDoctrine()->getManager();
                     $entityManagerUser->persist($user);
                     $entityManagerUser->flush();
-
-                    // echo 'Teste';
-                    // die();
 
                     $entityManagerAion = $this->getDoctrine()->getManager('aion');
                     $entityManagerAion->persist($aion);
@@ -105,7 +94,7 @@ class RegistrationController extends AbstractController
                         (new TemplatedEmail())
                             ->from(new Address('noreply@infinityaion.com.br', 'No Reply'))
                             ->to($user->getEmail())
-                            ->subject('Please Confirm your Email')
+                            ->subject('Infinity Aion - Registration')
                             ->htmlTemplate('registration/confirmation_email.html.twig')
                     );
                     // do anything else you need here, like send an email
@@ -113,8 +102,8 @@ class RegistrationController extends AbstractController
                     $con->commit();
 
                     $this->addFlash(
-                        'notice',
-                        'Email já registrado.'
+                        'success',
+                        'Conta criada com sucesso. Verifique seu email para confirmar.'
                     );
                     return $this->redirectToRoute('site');
                 } else {
@@ -133,11 +122,11 @@ class RegistrationController extends AbstractController
             ]);
         }catch(\Exception $e){
             $e->getMessage();
-            // $this->addFlash(
-            //     'notice',
-            //     'Usuário já registrado.'
-            // );
-            // return $this->redirectToRoute('site');
+            $this->addFlash(
+                'notice',
+                'Usuário já registrado.'
+            );
+            return $this->redirectToRoute('site');
         }
     }
 
@@ -162,7 +151,7 @@ class RegistrationController extends AbstractController
         // @TODO Change the redirect on success and handle or remove the flash message in your templates
         $em = $this->getDoctrine()->getManager();
         $em->getRepository(Aion::class)->enableAccount($user->getUsername());
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Conta ativada com sucesso.');
 
         return $this->redirectToRoute('shop');
     }
