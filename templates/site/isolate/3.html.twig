@@ -1,96 +1,76 @@
-{% extends 'base.html.twig' %}
+{% extends 'site/isolate.html.twig' %}
 
-{% block title %}Infinity Aion{% endblock %}
-
-{% block body %}
-
-<!-- ======= Header ======= -->
-<header id="header" class="fixed-top d-flex align-items-center header-transparent">
-<div class="container d-flex align-items-center">
-
-    <div class="logo mr-auto">
-    <h1 class="text-light"><a href="index.html"><span>Delicious</span></a></h1>
-    <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
-    </div>
-
-    <nav class="nav-menu d-none d-lg-block">
-    <ul>
-        <li><a href="{{ path('site') }}">Início</a></li>
-
-        <li class="book-a-table text-center"><a href="#">Registrar</a></li>
-        <li class="book-a-table text-center"><a href="#">Log In</a></li>
-    </ul>
-    </nav><!-- .nav-menu -->
-
-</div>
-</header><!-- End Header -->
-
-<!-- ======= Hero Section ======= -->
-<section class="hero" id="hero">
-<div class="hero-container">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-ride="carousel">
-
-    <div class="carousel-inner" role="listbox">
-
-        <!-- Slide 1 -->
-        <div class="carousel-item active" style="background: url({{ asset('uploads/cms/' ~ carousel.imageSmall)}}); background-size:cover; background-position: center center;">
-        <div class="carousel-container" style="background-color: rgba(10,10,10,0.5);">
-            <div class="carousel-content">
-            <h2 class="animate__animated animate__fadeInDown">{{carousel.title}}</h2>
-            <p class="animate__animated animate__fadeInUp">{{carousel.text}}</p>
-            </div>
-        </div>
-        </div>
-
-    </div>
-
-    </div>
-</div>
-</section><!-- End Hero -->
-
-<main id="main">
-
-<!-- ======= About Section ======= -->
-<section id="about" class="about">
-    <div class="container-fluid">
-
-    <div class="row">
-
-        <div class="col-lg-2 d-flex flex-column justify-content-center align-items-stretch"></div>
-        <div class="col-lg-8 d-flex flex-column justify-content-center align-items-stretch">
-
-        <div class="content">
-            <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-            </p>
-            <p class="font-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-            </p>
-            <ul>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-            </p>
-        </div>
-        <div class="col-lg-2 d-flex flex-column justify-content-center align-items-stretch"></div>
-
-        </div>
-
-    </div>
-
-    </div>
-</section><!-- End About Section -->
-
-</main><!-- End #main -->
-
-<a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
-
+{% block content %}
+<h3>Bem vindos ao Infinity Aion 4.9 - Upheaval</h3>
+<p class="font-italic">
+Os limites da Balaurea foram explorados. Uma falsa visão de vitória enganou os Daevas e trouxe uma confiança desconfortável. A morte de Tiamat, a descoberta de Kaldor e Levinshor e as crescentes conquistas trouxeram vislumbres de segurança para um mundo condenado.
+</p>
+<p class="font-italic">
+Enquanto os Elyos e Asmodians lutavam entre si para reivindicar território, as forças de Beritra usaram essa distração para capturar a Fundição Linkgate. Lá, o sombrio Senhor do Dragão foi capaz de desvendar os segredos da pesquisa dimensional que permitiria a passagem pelo véu protetor de Atreia. Grandes máquinas foram construídas para facilitar um plano sinistro, e Beritra agiu para apreender as antigas relíquias que ele havia procurado por tanto tempo. Tudo estava no lugar. Com um rugido de máquinas zumbindo, e a habilidade de atacar Atreia diretamente, a invasão começou.
+</p>
+<p class="font-italic">
+Embora os Daevas tenham começado a desvendar o enredo de Beritra, eles não perceberam o grande escopo do que o Senhor do Dragão havia colocado em movimento com rapidez suficiente. Enquanto seus invasores mecanizados invadiam Atreia, os Daevas lutaram para proteger suas terras. Máquinas vorazes, movidas por Ide, pressionavam em todas as frentes, mas seu propósito era muito mais tortuoso do que a conquista.
+</p>
+<p class="font-italic">
+Há muito enterrados nas sombras de Katalam e Danaria, as Pedras Seladoras zumbiam com comandos antigos. Sob a cobertura da invasão, Beritra conseguiu destruir as Pedras Seladoras. Sem qualquer aviso, as terras sob Sarpan, Tiamaranta, Katalam e Danaria começaram a tremer. Finalmente, Beritra dá seus passos devastadores em Atreia.
+</p>
+<p>
+<strong style="color: black;">Veja agora o que está por vir em Infinity Aion 4.9 - Upheaval</strong>
+</p>
+<p>Novos mapas</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Cygnea</li>
+<li><i class="bx bx-check-double"></i> Enshar</li>
+<li><i class="bx bx-check-double"></i> Levinshor</li>
+<li><i class="bx bx-check-double"></i> Kaldor</li>
+</ul>
+<p>Nova classe</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Aethertech</li>
+</ul>
+<p>Novo sistema de stigma</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Agora uma combinação de stigmas gera uma nova skill, além de, receberem encantamento resultando em uma melhor performance das mesmas.</li>
+</ul>
+<p>Landing Reinforcement</p>
+<ul>
+<li><i class="bx bx-check-double"></i> A disputa por territorio em reshanta ficou cada vez mais intensa, objetivado pela busca de itens para a aquisição de equipamentos e consumíveis que irão fazer a diferença na batalha.</li>
+</ul>
+<p>Glory Points</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Um novo sistema está disponível, agora o que determina o ranking dos players são os Glory Points. Esses pontos podem ser adquiridos participando das sieges, invasions e instâncias.</li>
+</ul>
+<p>Novas sieges</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Upper Abyss Fortress</li>
+<li><i class="bx bx-check-double"></i> Inggison e Gelkemaros</li>
+<li><i class="bx bx-check-double"></i> Wealhtheow's Keep</li>
+</ul>
+<p>Invasions</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Durante um curto período de tempo, as máquinas mortais do Beritra irão invadir Atreia, resultando em uma batalha valorosa pela recompensa após derrota-las.</li>
+</ul>
+<p>Instâncias PvP</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Engulfed Ophidian Bridge</li>
+<li><i class="bx bx-check-double"></i> Idgel Dome</li>
+<li><i class="bx bx-check-double"></i> Iron Wall Warfront</li>
+<li><i class="bx bx-check-double"></i> Kamar Batllefield</li>
+<li><i class="bx bx-check-double"></i> Além das tradicionais Arenas e Terath Dredgion</li>
+</ul>
+<p>Instâncias PvE</p>
+<ul>
+<li><i class="bx bx-check-double"></i> Drakenspire Depths</li>
+<li><i class="bx bx-check-double"></i> Stonespear Siege</li>
+<li><i class="bx bx-check-double"></i> Miren, Kysis e Krotan Barracks</li>
+<li><i class="bx bx-check-double"></i> Linkgate Fondary / Iluminary Obelisk</li>
+<li><i class="bx bx-check-double"></i> Occuped Rentus Base / Seized Danuar Santuary / Anguished Dragon Lord Refuge</li>
+<li><i class="bx bx-check-double"></i> Eternal Bastion (Reformulada)</li>
+</ul>
+<p>
+Explore agora esse novo universo, registre sua conta e comece sua aventura.
+</p>
+<p>
+Para mais detalhes acesse o <a href="/build/download/patch_notes.pdf">Patch Notes</a>.
+</p>
 {% endblock %}

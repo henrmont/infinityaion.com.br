@@ -9,9 +9,8 @@
 <div class="container d-flex align-items-center">
 
     <div class="logo mr-auto">
-    <h1 class="text-light"><a href="index.html"><span>Delicious</span></a></h1>
     <!-- Uncomment below if you prefer to use an image logo -->
-    <!-- <a href="index.html"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+    <img src="{{ asset('build/img/infinityaion.png') }}" alt="">
     </div>
 
     <nav class="nav-menu d-none d-lg-block">
@@ -34,11 +33,11 @@
     <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background: url({{ asset('build/img/slide/slide-1.jpg') }});">
-        <div class="carousel-container">
+        <div class="carousel-item active" style="background: url({{ asset('uploads/cms/' ~ carousel.imageSmall)}}); background-size:cover; background-position: center center;">
+        <div class="carousel-container" style="background-color: rgba(10,10,10,0.5);">
             <div class="carousel-content">
-            <h2 class="animate__animated animate__fadeInDown"><span>Delicious</span> Restaurant</h2>
-            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
+            <h2 class="animate__animated animate__fadeInDown">{{carousel.title}}</h2>
+            <p class="animate__animated animate__fadeInUp">{{carousel.text}}</p>
             </div>
         </div>
         </div>
@@ -61,24 +60,7 @@
         <div class="col-lg-8 d-flex flex-column justify-content-center align-items-stretch">
 
         <div class="content">
-            <h3>Eum ipsam laborum deleniti <strong>velit pariatur architecto aut nihil</strong></h3>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure dolor in reprehenderit
-            </p>
-            <p class="font-italic">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua.
-            </p>
-            <ul>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-            <li><i class="bx bx-check-double"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-            <li><i class="bx bx-check-double"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
-            </ul>
-            <p>
-            Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-            velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum
-            </p>
+            {% block content %}{% endblock %}
         </div>
         <div class="col-lg-2 d-flex flex-column justify-content-center align-items-stretch"></div>
 
