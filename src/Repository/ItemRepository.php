@@ -36,7 +36,6 @@ class ItemRepository extends ServiceEntityRepository
                 item.price AS price,
                 item.discount AS discount,
                 item.promo AS promo,
-                item.image AS image,
                 item.race AS race,
                 item.bbcode AS bbcode,
                 item.amount AS amount
